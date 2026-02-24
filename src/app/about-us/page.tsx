@@ -1,5 +1,6 @@
 import { Target, Users, ShieldCheck, Zap, ArrowRight } from "lucide-react";
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -25,18 +26,34 @@ export default function AboutPage() {
       {/* 2. OUR STORY (Side-by-Side) */}
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="aspect-square bg-slate-100 rounded-2xl overflow-hidden">
-               {/* Replace with actual image of Indore warehouse or skyline */}
-               <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400 text-xs italic">
-                 [Local Logistics Infrastructure Image]
-               </div>
+          <div className="relative group">
+            {/* The Image Container */}
+            <div className="aspect-square bg-slate-100 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200">
+              <Image 
+                src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop" 
+                alt="Indore Logistics Infrastructure" 
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Subtle dark overlay to make the floating box pop */}
+              <div className="absolute inset-0 bg-slate-950/5 group-hover:bg-transparent transition-colors"></div>
             </div>
-            {/* Subtle floating stat box */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-slate-100 hidden md:block">
-              <p className="text-3xl font-light text-red-600 tracking-tighter">100%</p>
-              <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Indore Owned</p>
+
+            {/* Precise Spine Detail (to match Hero style) */}
+            <div className="absolute -left-4 top-10 bottom-10 w-px bg-red-600/20 hidden lg:block"></div>
+
+            {/* Floating Stat Box - Enhanced Design */}
+            <div className="absolute -bottom-6 -right-6 bg-white p-8 rounded-[2rem] shadow-2xl border border-slate-50 hidden md:block animate-in fade-in slide-in-from-bottom-4 duration-1000">
+              <div className="flex flex-col items-center">
+                <p className="text-4xl font-light text-red-600 tracking-tighter leading-none">100%</p>
+                <div className="h-px w-8 bg-slate-100 my-3"></div>
+                <p className="text-[10px] font-bold text-slate-950 uppercase tracking-[0.2em]">Indore Owned</p>
+                <p className="text-[8px] text-slate-400 font-medium uppercase tracking-widest mt-1">Local Heritage</p>
+              </div>
             </div>
+            
+            {/* Decorative Background Element */}
+            <div className="absolute -top-10 -left-10 w-32 h-32 bg-red-600/5 rounded-full blur-3xl -z-10"></div>
           </div>
           
           <div>

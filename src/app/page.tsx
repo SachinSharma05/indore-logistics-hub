@@ -1,15 +1,25 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Search, ChevronRight, Package, Truck, Building2, Home, ArrowRight, ShieldCheck, ArrowUp, Zap } from "lucide-react";
-import DeliveryProcess from "@/components/DeliveryProcess";
+import { ChevronRight, Package, Truck, Building2, Home, ArrowRight, 
+  ShieldCheck, ArrowUp, Zap, ClipboardCheck, PackageCheck, UserCheck 
+} from "lucide-react";
 import { useEffect, useState } from "react";
-import PartnerNetwork from "@/components/Partners";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop"
+];
+
+const partners = [
+  { name: "DTDC", logo: "/logos/dtdc.png" },
+  { name: "Delhivery", logo: "/logos/delhivery.png" },
+  { name: "Maruti", logo: "/logos/maruti.png" },
+  { name: "BlueDart", logo: "/logos/bluedart1.png" },
+  { name: "Ecomm Express", logo: "/logos/ecomm.png" },
+  { name: "XpressBees", logo: "/logos/xpressbees.png" },
 ];
 
 // page.tsx ------------------------------------------
@@ -63,89 +73,219 @@ function ModernHero() {
   }, []);
   
   return (
-    <section className="relative w-full bg-white overflow-hidden">
-      {/* FINE LEFT BORDER (THE SPINE) 
-          Positioned 40px from the left, hidden on small screens
-      */}
-      <div className="hidden lg:block absolute left-10 top-0 bottom-0 w-px bg-slate-100 z-0"></div>
-
-      <div className="max-w-7xl mx-auto px-6 pt-8 pb-24 md:pt-12 md:pb-32 flex flex-col lg:flex-row items-center gap-10">
+    <section className="w-full bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative">
         
-        {/* --- LEFT CONTENT: TYPOGRAPHY --- */}
-        <div className="w-full lg:w-1/2 z-10 text-center lg:text-left relative pl-0 lg:pl-10">
-          {/* A small red indicator that sits ON the left border */}
-          <div className="hidden lg:block absolute left-[-41px] top-2 w-px h-12 bg-red-600"></div>
-
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-600/10 border border-red-500/20 text-red-500 text-[11px] font-bold tracking-wider mb-6 uppercase">
-            Indore's #1 Logistics Network
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl font-semibold text-black mb-6 tracking-tight leading-[1.1]">
-            Fastest & Secured <br />
-            <span className="text-red-600 font-light italic">Logistics Solutions</span>
-          </h1>
-          
-          <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto lg:mx-0 mb-10 font-light leading-relaxed">
-            Manage your entire supply chain from a single professional dashboard, 
-            built for the speed of modern commerce.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-            <Link href="/book-pickup" className="w-full sm:w-auto bg-slate-950 text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-red-600 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-slate-200 group">
-              Start Shipping <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link href="/track" className="w-full sm:w-auto px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-950 hover:text-red-600 transition-colors">
-              Track Manifest
-            </Link>
-          </div>
+        <div className="hidden lg:block absolute left-6 top-0 bottom-0 w-px bg-slate-100 z-0">
+           <div className="absolute top-16 left-[-1px] w-[3px] h-20 bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.2)]"></div>
         </div>
 
-        {/* --- RIGHT CONTENT: IMAGE SLIDER --- */}
-        <div className="w-full lg:w-1/2 relative">
-          <div className="relative rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 group aspect-[4/3] lg:aspect-auto lg:h-[550px]">
-            {heroImages.map((img, idx) => (
-              <Image 
-                key={img}
-                src={img} 
-                alt="Logistics Scene" 
-                fill
-                priority
-                className={`object-cover transition-opacity duration-1000 group-hover:scale-105 ${
-                  idx === activeImage ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            ))}
+        <div className="flex flex-col lg:flex-row items-center pt-8 pb-24 md:pt-12 md:pb-32 gap-12">
+          <div className="w-full lg:w-1/2 lg:pl-16 z-10 text-center lg:text-left">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-50 border border-red-100 text-red-600 text-[10px] font-bold tracking-widest mb-8 uppercase">
+              Indore's #1 Logistics Network
+            </div>
             
-            {/* Overlay indicators for the slider */}
-            <div className="absolute top-8 right-8 flex gap-2">
-              {heroImages.map((_, idx) => (
-                <div 
-                  key={idx}
-                  className={`h-1 rounded-full transition-all duration-500 ${
-                    idx === activeImage ? "w-8 bg-red-600" : "w-2 bg-white/40"
+            <h1 className="text-5xl md:text-7xl font-semibold text-slate-950 tracking-tighter leading-[0.95] mb-8">
+              Moving cargo <br />
+              <span className="text-red-600 font-light italic">at the speed of light.</span>
+            </h1>
+            
+            <p className="text-slate-500 text-sm md:text-lg font-light leading-relaxed max-w-xl mb-10 mx-auto lg:mx-0">
+              Indore's premium logistics manifest. From enterprise-grade warehousing 
+              to localized last-mile delivery, we redefine how the city moves.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+              <Link 
+                href="/book-pickup" 
+                className="w-full sm:w-auto bg-slate-950 text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-red-600 transition-all shadow-xl shadow-slate-200 active:scale-95"
+              >
+                Start Shipping
+              </Link>
+              <Link 
+                href="/track" 
+                className="group flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-950 hover:text-red-600 transition-colors"
+              >
+                Track Manifest <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Image Slider */}
+          <div className="w-full lg:w-1/2 relative h-[400px] md:h-[550px]">
+            <div className="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 group">
+              {heroImages.map((img, idx) => (
+                <Image 
+                  key={img}
+                  src={img} 
+                  alt="Modern Logistics Management" 
+                  fill
+                  priority={idx === 0}
+                  className={`object-cover transition-opacity duration-1000 group-hover:scale-105 ${
+                    idx === activeImage ? "opacity-100" : "opacity-0"
                   }`}
                 />
               ))}
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
-
-            <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-[2rem] flex justify-between items-center text-white">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-600/20">
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-red-500">Live Delivery</p>
-                  <p className="text-sm font-semibold tracking-tight">98.4% Efficiency</p>
-                </div>
+              
+              {/* Slider Dots */}
+              <div className="absolute top-8 right-8 flex gap-2 z-20">
+                {heroImages.map((_, idx) => (
+                  <div 
+                    key={idx}
+                    className={`h-1 rounded-full transition-all duration-500 ${
+                      idx === activeImage ? "w-8 bg-red-600" : "w-2 bg-white/40"
+                    }`}
+                  />
+                ))}
               </div>
-              <div className="hidden md:flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Secured Manifest</span>
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+
+              {/* Floating Badge */}
+              <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-[2rem] flex justify-between items-center text-white">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-red-500">Live Delivery</p>
+                    <p className="text-sm font-semibold tracking-tight">98.4% Efficiency</p>
+                  </div>
+                </div>
+                <div className="hidden md:flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Secured Manifest</span>
+                </div>
               </div>
             </div>
           </div>
+
+        </div>
+        {/* THE STATS BAR - Clean & Grounded */}
+          <div className="bg-white border border-slate-100 shadow-2xl shadow-slate-200/60 rounded-[2.5rem] p-10 pb-12 grid grid-cols-2 md:grid-cols-4 gap-12 relative z-20 -mt-16 mb-[-2rem]">
+            <StatItem label="Active Shipments" value="50k+" />
+            <StatItem label="Success Rate" value="99.8%" />
+            <StatItem label="Destinations" value="150+" />
+            <StatItem label="Expert Support" value="24/7" />
+          </div>
+      </div>
+    </section>
+  );
+}
+
+function PartnerNetwork() {
+  return (
+    <section className="w-full bg-slate-50/50 py-12 border-y border-slate-100">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+          
+          {/* Label Side */}
+          <div className="lg:w-1/4 text-center lg:text-left">
+            <p className="text-[10px] font-bold text-red-600 uppercase tracking-[0.2em] mb-1">Network Synergy</p>
+            <h3 className="text-lg font-semibold text-slate-900 tracking-tight">Integrated Carriers</h3>
+            <p className="text-xs text-slate-400 font-light mt-1">Direct API integration with India's leading providers.</p>
+          </div>
+
+          {/* Logos Grid */}
+          <div className="lg:w-3/4 w-full">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+              {partners.map((partner) => (
+                <div key={partner.name} className="group cursor-help transition-all duration-300 hover:scale-110">
+                  <Image 
+                    src={partner.logo} 
+                    alt={`${partner.name} Logo`}
+                    width={100}
+                    height={80}
+                    className="object-contain"
+                    />
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DeliveryProcess() {
+  const steps = [
+    {
+      id: "01",
+      title: "Parcel Register",
+      desc: "Instant booking and digital label generation for your shipment.",
+      icon: <ClipboardCheck className="w-6 h-6 stroke-[1.5]" />,
+    },
+    {
+      id: "02",
+      title: "Parcel Loading",
+      desc: "Secure handling and specialized loading at our Indore hub.",
+      icon: <Truck className="w-6 h-6 stroke-[1.5]" />,
+    },
+    {
+      id: "03",
+      title: "Parcel In-Transit",
+      desc: "Real-time GPS tracking as your goods move to the destination.",
+      icon: <PackageCheck className="w-6 h-6 stroke-[1.5]" />,
+    },
+    {
+      id: "04",
+      title: "Parcel Delivery",
+      desc: "Safe doorstep delivery with digital proof of acknowledgement.",
+      icon: <UserCheck className="w-6 h-6 stroke-[1.5]" />,
+    },
+  ];
+
+  return (
+    <section className="w-full py-16 bg-slate-50/50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative">
+        
+        {/* Header - Slimmed Down */}
+        <div className="text-center mb-16">
+          <span className="text-red-600 text-[10px] font-semibold tracking-[0.3em] uppercase">Workflow</span>
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 mt-2 tracking-tight">
+            How We Deliver Your Parcel
+          </h2>
+        </div>
+
+        {/* The Connection Path - Simplified to a cleaner line */}
+        <div className="hidden lg:block absolute top-[48%] left-0 w-full h-px pointer-events-none px-20">
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent border-t border-dashed border-slate-300"></div>
+        </div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+          {steps.map((step) => (
+            <div 
+              key={step.id} 
+              className="flex flex-col items-center text-center group"
+            >
+              {/* Minimalist Circle Icon */}
+              <div className="relative mb-8">
+                <div className="w-20 h-20 rounded-2xl bg-white border border-slate-200 flex items-center justify-center transition-all duration-500 group-hover:border-red-500 group-hover:shadow-xl group-hover:shadow-red-500/10 rotate-3 group-hover:rotate-0">
+                  <div className="text-slate-400 group-hover:text-red-600 transition-colors duration-300">
+                    {step.icon}
+                  </div>
+                </div>
+                
+                {/* Number Badge - Slim & Small */}
+                <div className="absolute -top-2 -right-2 w-7 h-7 bg-slate-900 text-white rounded-lg flex items-center justify-center text-[10px] font-semibold">
+                  {step.id}
+                </div>
+              </div>
+
+              {/* Step Info - Light Hierarchy */}
+              <h3 className="text-lg font-semibold text-slate-900 mb-2 tracking-tight transition-colors group-hover:text-red-600">
+                {step.title}
+              </h3>
+              <p className="text-slate-500 text-[13px] font-light leading-relaxed max-w-[200px]">
+                {step.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

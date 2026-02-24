@@ -4,9 +4,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Phone, Clock, Facebook, Instagram, Twitter, Search, 
-  ChevronRight, TruckIcon, User, LogOut, LayoutDashboard, 
-  Settings, ChevronDown, Package 
+  Phone, Clock, Search, ChevronRight, User, LogOut, LayoutDashboard, Settings, ChevronDown, Package 
 } from "lucide-react";
 
 export default function Navbar() {
@@ -20,23 +18,18 @@ export default function Navbar() {
       <div className="w-full bg-slate-950 py-1.5 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-[10px] font-medium text-slate-400">
+            <div className="flex items-center gap-2 text-[10px] font-medium text-slate-200">
               <Phone className="w-3 h-3 text-red-500" /> 
               <span className="tracking-wider">+91 93403 84339</span>
             </div>
-            <div className="flex items-center gap-2 text-[10px] font-medium text-slate-400">
+            <div className="flex items-center gap-2 text-[10px] font-medium text-slate-200">
               <Clock className="w-3 h-3 text-red-500" /> 
               <span className="tracking-wider">MON - SAT: 9:00AM - 6:00PM</span>
             </div>
           </div>
           <div className="flex items-center gap-5">
-            <div className="flex gap-4 border-r border-slate-800 pr-5">
-              <Facebook className="w-3 h-3 text-slate-500 hover:text-red-500 transition-colors cursor-pointer" />
-              <Instagram className="w-3 h-3 text-slate-500 hover:text-red-500 transition-colors cursor-pointer" />
-              <Twitter className="w-3 h-3 text-slate-500 hover:text-red-500 transition-colors cursor-pointer" />
-            </div>
-            <Link href="/career" className="text-[10px] font-semibold text-slate-400 hover:text-white uppercase tracking-widest transition">Career</Link>
-            <Link href="/terms" className="text-[10px] font-semibold text-slate-400 hover:text-white uppercase tracking-widest transition">Terms</Link>
+            <Link href="/career" className="text-[10px] font-semibold text-slate-200 hover:text-white uppercase tracking-widest transition">Career</Link>
+            <Link href="/terms" className="text-[10px] font-semibold text-slate-200 hover:text-white uppercase tracking-widest transition">Terms</Link>
           </div>
         </div>
       </div>
