@@ -1,21 +1,23 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { Search, ChevronRight, Package, Truck, Building2, Home, ArrowRight, ShieldCheck, ArrowUp } from "lucide-react";
+import { Search, ChevronRight, Package, Truck, Building2, Home, ArrowRight, ShieldCheck, ArrowUp, Zap } from "lucide-react";
 import DeliveryProcess from "@/components/DeliveryProcess";
 import { useEffect, useState } from "react";
+import PartnerNetwork from "@/components/Partners";
 
-// Types for Service Card
-interface ServiceCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
+const heroImages = [
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop"
+];
 
 // page.tsx ------------------------------------------
 export default function HomePage() {
   return (
     <main className="flex flex-col bg-white">
       <ModernHero />
+      <PartnerNetwork />
       
       {/* SECTION: SERVICES - Slim & Spacious */}
       <section className="py-12 px-6 border-b border-slate-50">
@@ -50,51 +52,103 @@ export default function HomePage() {
 
 // --- CORE COMPONENTS ---
 function ModernHero() {
+  const [activeImage, setActiveImage] = useState(0);
+
+  // Automatic Interval for Image Slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveImage((prev) => (prev + 1) % heroImages.length);
+    }, 5000); // Changes every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
+  
   return (
-    <div className="w-full">
-      <section className="relative w-full bg-slate-950 pt-16 pb-20 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          {/* Slim Badge */}
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-600/10 border border-red-500/20 text-red-500 text-[11px] font-medium tracking-wider mb-6 uppercase">
+    <section className="relative w-full bg-white overflow-hidden">
+      {/* FINE LEFT BORDER (THE SPINE) 
+          Positioned 40px from the left, hidden on small screens
+      */}
+      <div className="hidden lg:block absolute left-10 top-0 bottom-0 w-px bg-slate-100 z-0"></div>
+
+      <div className="max-w-7xl mx-auto px-6 pt-8 pb-24 md:pt-12 md:pb-32 flex flex-col lg:flex-row items-center gap-10">
+        
+        {/* --- LEFT CONTENT: TYPOGRAPHY --- */}
+        <div className="w-full lg:w-1/2 z-10 text-center lg:text-left relative pl-0 lg:pl-10">
+          {/* A small red indicator that sits ON the left border */}
+          <div className="hidden lg:block absolute left-[-41px] top-2 w-px h-12 bg-red-600"></div>
+
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-600/10 border border-red-500/20 text-red-500 text-[11px] font-bold tracking-wider mb-6 uppercase">
             Indore's #1 Logistics Network
           </div>
-
-          {/* Slimmer Heading (Semibold instead of Black) */}
-          <h1 className="text-4xl md:text-5xl font-semibold text-white mb-6 tracking-tight leading-tight">
+          
+          <h1 className="text-4xl md:text-6xl font-semibold text-black mb-6 tracking-tight leading-[1.1]">
             Fastest & Secured <br />
             <span className="text-red-600 font-light italic">Logistics Solutions</span>
           </h1>
           
-          {/* Light Weight Body Text */}
-          <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10 font-light leading-relaxed">
+          <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto lg:mx-0 mb-10 font-light leading-relaxed">
             Manage your entire supply chain from a single professional dashboard, 
             built for the speed of modern commerce.
           </p>
 
-          {/* Tracking Bar with subtle borders */}
-          <div className="max-w-lg mx-auto bg-white/5 backdrop-blur-sm p-1.5 rounded-full flex flex-col md:flex-row gap-2 border border-white/10">
-            <input 
-              type="text" 
-              placeholder="Enter Tracking ID..." 
-              className="bg-transparent flex-1 px-6 py-2.5 outline-none font-light text-sm text-white placeholder:text-slate-500" 
-            />
-            <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-2.5 rounded-full text-xs font-medium transition-all">
-              Track Now
-            </button>
+          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            <Link href="/book-pickup" className="w-full sm:w-auto bg-slate-950 text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-red-600 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-slate-200 group">
+              Start Shipping <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link href="/track" className="w-full sm:w-auto px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-950 hover:text-red-600 transition-colors">
+              Track Manifest
+            </Link>
           </div>
         </div>
-      </section>
 
-      {/* COMPACT STATS OVERLAP */}
-      <section className="relative -mt-10 z-30 px-6">
-        <div className="max-w-5xl mx-auto bg-white border border-slate-200 rounded-lg shadow-sm p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <StatItem label="Active Shipments" value="50k+" />
-          <StatItem label="Success Rate" value="99.8%" />
-          <StatItem label="Pincodes" value="150+" />
-          <StatItem label="Support" value="24/7" />
+        {/* --- RIGHT CONTENT: IMAGE SLIDER --- */}
+        <div className="w-full lg:w-1/2 relative">
+          <div className="relative rounded-[3rem] overflow-hidden shadow-2xl shadow-slate-200 group aspect-[4/3] lg:aspect-auto lg:h-[550px]">
+            {heroImages.map((img, idx) => (
+              <Image 
+                key={img}
+                src={img} 
+                alt="Logistics Scene" 
+                fill
+                priority
+                className={`object-cover transition-opacity duration-1000 group-hover:scale-105 ${
+                  idx === activeImage ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            
+            {/* Overlay indicators for the slider */}
+            <div className="absolute top-8 right-8 flex gap-2">
+              {heroImages.map((_, idx) => (
+                <div 
+                  key={idx}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    idx === activeImage ? "w-8 bg-red-600" : "w-2 bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+
+            <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-[2rem] flex justify-between items-center text-white">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-600/20">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-red-500">Live Delivery</p>
+                  <p className="text-sm font-semibold tracking-tight">98.4% Efficiency</p>
+                </div>
+              </div>
+              <div className="hidden md:flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Secured Manifest</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
 
