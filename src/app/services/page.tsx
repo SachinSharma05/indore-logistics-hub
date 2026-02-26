@@ -1,142 +1,160 @@
-import { Zap, Truck, Building2, Home, Check, ArrowRight, Clock, ShieldCheck, Globe } from "lucide-react";
+import { Zap, Truck, Building2, Home, Check, ArrowRight, Clock, ShieldCheck, Globe, MoveRight } from "lucide-react";
 import Link from 'next/link';
 
 export default function ServicesPage() {
   const services = [
     {
       title: "Ecommerce Shipping",
-      description: "Automated shipping solutions for D2C brands. Includes COD management and NDR tracking.",
-      icon: <Zap className="w-6 h-6 stroke-[1.5]" />,
+      description: "Scalable logistics for Indore's rising D2C brands. Includes seamless COD management and automated NDR tracking.",
+      icon: <Zap size={24} />,
       features: ["Next-day delivery", "Real-time Tracking", "COD Remittance"],
-      link: "/book-pickup?type=ecommerce"
+      link: "/book-pickup?type=ecommerce",
+      accent: "text-amber-500"
     },
     {
       title: "Bulk & Heavy Shipment",
-      description: "Specialized handling for heavy machinery, raw materials, and large inventory transfers.",
-      icon: <Truck className="w-6 h-6 stroke-[1.5]" />,
+      description: "Specialized handling for heavy machinery, raw materials, and large-scale inventory transfers between hubs.",
+      icon: <Truck size={24} />,
       features: ["FTL & LTL Options", "Lift-gate Service", "Industrial Packing"],
-      link: "/book-pickup?type=bulk"
+      link: "/book-pickup?type=bulk",
+      accent: "text-blue-500"
     },
     {
       title: "Corporate Courier",
-      description: "Priority document and parcel handling for law firms, banks, and offices.",
-      icon: <Building2 className="w-6 h-6 stroke-[1.5]" />,
+      description: "Priority chain-of-custody for law firms, banks, and offices requiring secure document transfers.",
+      icon: <Building2 size={24} />,
       features: ["Secure Chain of Custody", "Digital POD", "Scheduled Pickups"],
-      link: "/book-pickup?type=corporate"
+      link: "/book-pickup?type=corporate",
+      accent: "text-red-600"
     },
     {
       title: "Home Shifting",
-      description: "Stress-free local relocation within Indore with professional packing and unpacking.",
-      icon: <Home className="w-6 h-6 stroke-[1.5]" />,
+      description: "White-glove local relocation within Indore with professional packing, assembly, and insurance.",
+      icon: <Home size={24} />,
       features: ["Furniture Assembly", "Fragile Item Care", "Transit Insurance"],
-      link: "/book-pickup?type=shifting"
+      link: "/book-pickup?type=shifting",
+      accent: "text-emerald-600"
     }
   ];
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* 1. SLIM HERO */}
-      <section className="bg-slate-950 py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-red-500 text-[10px] font-semibold tracking-[0.3em] uppercase mb-4 block">Our Expertise</span>
-          <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">
+    <main className="min-h-screen bg-[#F8FAFC]">
+      
+      {/* --- MODERN HERO --- */}
+      <section className="bg-slate-950 pt-24 pb-32 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#ef44440a,transparent)]" />
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Engineered for Indore</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
             Logistics Solutions for <br />
-            <span className="text-red-600 font-light italic">Every Business Need</span>
+            <span className="text-red-600 italic font-light">The Next Industrial Era</span>
           </h1>
-          <p className="text-slate-400 text-sm md:text-base font-light max-w-2xl mx-auto leading-relaxed">
-            From the smallest envelope to the largest industrial cargo, we provide 
-            tailored logistics across Indore with precision and care.
+          <p className="text-slate-400 text-sm md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+            From single-parcel D2C fulfillment to multi-ton industrial cargo, 
+            Indore Logistics delivers with absolute precision.
           </p>
         </div>
       </section>
 
-      {/* 2. SERVICES GRID - Clean Border Style */}
-      <section className="py-16 px-6 -mt-10">
+      {/* --- SERVICES GRID --- */}
+      <section className="py-20 px-6 -mt-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="group flex flex-col sm:flex-row bg-white border border-slate-200 rounded-3xl overflow-hidden hover:border-red-500/30 hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500"
+                className="group bg-white rounded-[2.5rem] border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 flex flex-col"
               >
-                {/* Icon Column */}
-                <div className="sm:w-32 bg-slate-50 flex items-center justify-center p-8 group-hover:bg-red-600 group-hover:text-white transition-colors duration-500">
-                  {service.icon}
-                </div>
-                
-                {/* Content Column */}
-                <div className="p-8 flex-1 flex flex-col">
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2 tracking-tight group-hover:text-red-600 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-500 text-[13px] font-light mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 mb-8">
-                    {service.features.map((feat, i) => (
-                      <div key={i} className="flex items-center gap-2 text-[12px] text-slate-600 font-medium">
-                        <Check className="w-3.5 h-3.5 text-red-600 stroke-[3]" /> {feat}
-                      </div>
-                    ))}
+                <div className="p-10 flex-1">
+                  {/* Icon & Label */}
+                  <div className="flex items-center justify-between mb-10">
+                    <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-900 group-hover:bg-red-600 group-hover:text-white transition-all duration-500 shadow-sm border border-slate-100">
+                      {service.icon}
+                    </div>
+                    <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest group-hover:text-red-600 transition-colors">Service Model 0{index + 1}</span>
                   </div>
 
-                  <Link 
-                    href={service.link}
-                    className="mt-auto inline-flex items-center gap-2 text-[11px] font-semibold text-slate-900 hover:text-red-600 uppercase tracking-widest transition-colors"
-                  >
-                    Book This Service <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm md:text-base font-medium mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Feature Pills */}
+                  <div className="flex flex-wrap gap-2 mb-10">
+                    {service.features.map((feat, i) => (
+                      <span key={i} className="bg-slate-50 border border-slate-100 text-slate-600 text-[10px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider flex items-center gap-1.5 group-hover:bg-white group-hover:border-red-100 transition-all">
+                        <Check size={12} className="text-red-600" /> {feat}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+
+                {/* Bottom Action Area */}
+                <Link 
+                  href={service.link}
+                  className="bg-slate-50 group-hover:bg-red-600 border-t border-slate-100 py-6 px-10 flex items-center justify-between transition-all duration-500"
+                >
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-900 group-hover:text-white transition-colors">Initiate Shipment</span>
+                  <MoveRight className="text-slate-400 group-hover:text-white group-hover:translate-x-2 transition-all" size={20} />
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. CORE BENEFITS - Minimalist Row */}
-      <section className="py-16 px-6 bg-slate-50/50 border-t border-slate-100">
+      {/* --- STANDARDS SECTION --- */}
+      <section className="py-24 px-6 bg-white border-y border-slate-100">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl font-semibold text-slate-900 tracking-tight">Standard with every shipment</h2>
-            <div className="w-12 h-1 bg-red-600 mx-auto mt-4 rounded-full"></div>
+          <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+            <div className="max-w-xl">
+              <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">The IL Standard</span>
+              <h2 className="text-3xl font-bold text-slate-950 tracking-tight">Standard with every manifest</h2>
+            </div>
+            <div className="h-px flex-1 bg-slate-100 hidden md:block mb-4 mx-10"></div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-12">
-            <BenefitItem 
-              icon={<Clock className="w-5 h-5" />}
-              title="Punctual Pickups"
-              desc="We value your time. Our agents arrive precisely within the committed window."
+          <div className="grid md:grid-cols-3 gap-16">
+            <StandardItem 
+              icon={<Clock />}
+              title="Hyper-Punctual"
+              desc="Indore traffic is dynamic; our AI routing isn't. We guarantee arrival within your selected window."
             />
-            <BenefitItem 
-              icon={<ShieldCheck className="w-5 h-5" />}
-              title="Cargo Insurance"
-              desc="Optional insurance coverage for high-value goods to give you total peace of mind."
+            <StandardItem 
+              icon={<ShieldCheck />}
+              title="Full Liability"
+              desc="Comprehensive transit insurance for every shipment, from legal docs to heavy machinery."
             />
-            <BenefitItem 
-              icon={<Globe className="w-5 h-5" />}
-              title="Digital Dashboard"
-              desc="Manage all your shipments, invoices, and tracking from one modern portal."
+            <StandardItem 
+              icon={<Globe />}
+              title="Indore-to-India"
+              desc="Direct lines from our Dewas Naka hub to over 19,000 pincodes across the country."
             />
           </div>
         </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-24 px-6 text-center">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Not sure which service fits?</h2>
+        <Link href="/contact" className="inline-flex items-center gap-2 bg-slate-950 text-white px-8 py-4 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-red-600 transition-all">
+          Consult our Dispatch Team <ArrowRight size={14} />
+        </Link>
       </section>
     </main>
   );
 }
 
-// --- SLIM HELPER COMPONENTS ---
-
-function BenefitItem({ icon, title, desc }: { icon: any, title: string, desc: string }) {
+function StandardItem({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <div className="group text-center">
-      <div className="w-12 h-12 bg-white rounded-2xl border border-slate-200 flex items-center justify-center mx-auto mb-6 group-hover:border-red-600 group-hover:shadow-lg group-hover:shadow-red-500/10 transition-all duration-300">
-        <div className="text-slate-400 group-hover:text-red-600 transition-colors">
-          {icon}
-        </div>
+    <div className="group">
+      <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 mb-6 group-hover:bg-red-50 group-hover:text-red-600 transition-all">
+        {icon}
       </div>
-      <h4 className="font-semibold text-slate-900 mb-2 tracking-tight">{title}</h4>
-      <p className="text-slate-500 text-[13px] font-light leading-relaxed px-4">{desc}</p>
+      <h4 className="font-bold text-slate-900 mb-3 tracking-tight uppercase text-sm">{title}</h4>
+      <p className="text-slate-500 text-sm font-medium leading-relaxed">{desc}</p>
     </div>
   );
 }

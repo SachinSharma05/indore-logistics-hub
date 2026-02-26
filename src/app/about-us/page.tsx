@@ -1,141 +1,176 @@
-import { Target, Users, ShieldCheck, Zap, ArrowRight } from "lucide-react";
-import Link from 'next/link';
 import Image from "next/image";
+import Link from "next/link";
+import { ShieldCheck, Zap, Users, Target, ArrowRight, Award, Globe, Building2 } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="flex flex-col bg-white">
+    <main className="flex flex-col bg-[#F8FAFC]">
       
-      {/* 1. MINIMAL HERO */}
-      <section className="bg-slate-950 py-20 px-6 border-b border-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-red-500 text-[10px] font-semibold tracking-[0.3em] uppercase mb-4 block">
-            Our Journey
+      {/* 1. CINEMATIC HERO */}
+      <section className="bg-slate-950 pt-24 pb-32 px-6 relative overflow-hidden">
+        {/* Subtle Grid Background Pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <span className="text-red-500 text-[10px] font-black tracking-[0.5em] uppercase mb-6 block">
+            Since 2021 • Central India`s Hub
           </span>
-          <h1 className="text-3xl md:text-5xl font-semibold text-white tracking-tight mb-6">
-            Standardizing Logistics for the <br />
-            <span className="text-red-600 font-light italic text-2xl md:text-4xl">Heart of Central India</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-8">
+            Redefining Logistics for the <br />
+            <span className="text-red-600 italic font-light">Heart of Indore</span>
           </h1>
-          <p className="text-slate-400 text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">
-            Indore Logistics was founded with a singular vision: to bridge the gap between 
-            traditional shipping and modern tech-enabled fulfillment.
+          <p className="text-slate-400 text-sm md:text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+            Indore Logistics was built to bridge the gap between traditional trade and the 
+            digital-first economy of Madhya Pradesh.
           </p>
         </div>
       </section>
 
-      {/* 2. OUR STORY (Side-by-Side) */}
-      <section className="py-16 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative group">
-            {/* The Image Container */}
-            <div className="aspect-square bg-slate-100 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200">
-              <Image 
-                src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop" 
-                alt="Indore Logistics Infrastructure" 
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Subtle dark overlay to make the floating box pop */}
-              <div className="absolute inset-0 bg-slate-950/5 group-hover:bg-transparent transition-colors"></div>
-            </div>
+      {/* 2. OUR STORY (Timeline Spine Style) */}
+      <section className="py-24 px-6 -mt-16 relative z-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Visual Side */}
+            <div className="relative group">
+              <div className="aspect-[4/5] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl relative">
+                <Image 
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Warehouse Operations" 
+                  fill
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+                
+                {/* Floating Heritage Badge */}
+                <div className="absolute top-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl">
+                    <p className="text-white text-[10px] font-bold uppercase tracking-widest">Est. Indore</p>
+                </div>
+              </div>
 
-            {/* Precise Spine Detail (to match Hero style) */}
-            <div className="absolute -left-4 top-10 bottom-10 w-px bg-red-600/20 hidden lg:block"></div>
-
-            {/* Floating Stat Box - Enhanced Design */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-8 rounded-[2rem] shadow-2xl border border-slate-50 hidden md:block animate-in fade-in slide-in-from-bottom-4 duration-1000">
-              <div className="flex flex-col items-center">
-                <p className="text-4xl font-light text-red-600 tracking-tighter leading-none">100%</p>
-                <div className="h-px w-8 bg-slate-100 my-3"></div>
-                <p className="text-[10px] font-bold text-slate-950 uppercase tracking-[0.2em]">Indore Owned</p>
-                <p className="text-[8px] text-slate-400 font-medium uppercase tracking-widest mt-1">Local Heritage</p>
+              {/* Floating Performance Box */}
+              <div className="absolute -bottom-8 -right-8 bg-white p-8 rounded-[2.5rem] shadow-2xl border border-slate-100 hidden md:block">
+                <div className="space-y-4">
+                  <StatItem value="1M+" label="Parcels Moved" />
+                  <div className="h-px bg-slate-100" />
+                  <StatItem value="99.9%" label="Local Reliability" />
+                </div>
               </div>
             </div>
-            
-            {/* Decorative Background Element */}
-            <div className="absolute -top-10 -left-10 w-32 h-32 bg-red-600/5 rounded-full blur-3xl -z-10"></div>
-          </div>
-          
-          <div>
-            <h2 className="text-2xl font-semibold text-slate-900 mb-6 tracking-tight">Built for Indore's Growth</h2>
-            <div className="space-y-4 text-slate-500 text-sm font-light leading-relaxed">
-              <p>
-                From the bustling markets of Rajwada to the corporate hubs of Vijay Nagar, 
-                we understand that Indore moves differently. Our network is designed to 
-                handle the unique pace of local trade while providing global standards.
-              </p>
-              <p>
-                We don't just move parcels; we move the economy of Madhya Pradesh. 
-                By integrating AI-driven routing with a dedicated local fleet, we ensure 
-                that small businesses and large enterprises alike have a reliable partner.
-              </p>
+
+            {/* Content Side */}
+            <div className="lg:pl-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-600 mb-6">
+                <Building2 size={14} />
+                <span className="text-[10px] font-black uppercase tracking-widest">Local Heritage</span>
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 mb-6 tracking-tight">The Pace of Central India</h2>
+              <div className="space-y-6 text-slate-600 text-sm md:text-base font-medium leading-relaxed">
+                <p>
+                  From the historic lanes of <span className="text-slate-950 font-bold">Rajwada</span> to the soaring 
+                  IT parks of <span className="text-slate-950 font-bold">Crystal IT Park</span>, we’ve mapped 
+                  every shortcut and bottleneck in the city.
+                </p>
+                <p>
+                  We don’t just deliver boxes; we deliver trust. Our AI-driven routing integrates 
+                  seamlessly with our ground fleet of over 200+ dedicated local agents, ensuring 
+                  your business never stops moving.
+                </p>
+                
+                <div className="pt-6 grid grid-cols-2 gap-4">
+                    <div className="p-4 bg-white rounded-2xl border border-slate-100">
+                        <Award className="text-red-600 mb-2" size={20} />
+                        <h4 className="text-xs font-bold text-slate-900 uppercase">AEO Certified</h4>
+                        <p className="text-[10px] text-slate-400">Standardized Ops</p>
+                    </div>
+                    <div className="p-4 bg-white rounded-2xl border border-slate-100">
+                        <Globe className="text-red-600 mb-2" size={20} />
+                        <h4 className="text-xs font-bold text-slate-900 uppercase">Pan-India</h4>
+                        <p className="text-[10px] text-slate-400">19,000+ Pincodes</p>
+                    </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. CORE VALUES (Slim Grid) */}
-      <section className="py-16 px-6 bg-slate-50">
+      {/* 3. CORE VALUES (High-Density Grid) */}
+      <section className="py-24 px-6 bg-white border-y border-slate-100">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-slate-900 tracking-tight">The Principles That Move Us</h2>
+          <div className="text-center mb-16">
+            <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-3 block">Our DNA</span>
+            <h2 className="text-3xl font-bold text-slate-950 tracking-tight italic">Built on Principles</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <ValueCard 
-              icon={<ShieldCheck className="w-5 h-5 stroke-[1.5]" />} 
+              icon={<ShieldCheck />} 
               title="Integrity First" 
-              desc="Every shipment is handled with the same care as our very first one." 
+              desc="We treat every local merchant's parcel like it's our own." 
             />
             <ValueCard 
-              icon={<Zap className="w-5 h-5 stroke-[1.5]" />} 
-              title="Speed & Tech" 
-              desc="Leveraging real-time data to bypass traffic and delays." 
+              icon={<Zap />} 
+              title="Indore Velocity" 
+              desc="Using real-time telemetry to navigate Indore's unique traffic." 
             />
             <ValueCard 
-              icon={<Users className="w-5 h-5 stroke-[1.5]" />} 
-              title="Local Expertise" 
-              desc="Deep roots in Indore ensure we know every turn of the city." 
+              icon={<Users />} 
+              title="Community Rooted" 
+              desc="100% of our ground staff are residents of Madhya Pradesh." 
             />
             <ValueCard 
-              icon={<Target className="w-5 h-5 stroke-[1.5]" />} 
-              title="Global Vision" 
-              desc="Building infrastructure that connects MP to the world." 
+              icon={<Target />} 
+              title="Tech Precision" 
+              desc="Proprietary scanning tech for zero-error sorting." 
             />
           </div>
         </div>
       </section>
 
-      {/* 4. JOIN US CTA */}
-      <section className="py-20 px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-4 tracking-tight">Be a Part of Our Story</h2>
-          <p className="text-slate-500 text-sm font-light mb-8 leading-relaxed">
-            Whether you're looking for a logistics partner or a career in the future of transport, 
-            we'd love to hear from you.
+      {/* 4. JOIN US CTA (Modern Inset) */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto bg-slate-950 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-3xl"></div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative z-10">
+            Ready to scale your <br /> logistics?
+          </h2>
+          <p className="text-slate-400 text-sm font-medium mb-10 max-w-md mx-auto relative z-10">
+            Join 500+ Indore businesses who rely on us for their daily fulfillment and shipping needs.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="bg-red-600 text-white px-8 py-3 rounded-full text-[11px] font-semibold uppercase tracking-widest hover:bg-slate-900 transition-all shadow-lg shadow-red-200">
-              Work With Us
+          <div className="flex flex-wrap justify-center gap-4 relative z-10">
+            <Link href="/contact" className="bg-red-600 text-white px-10 py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-white hover:text-red-600 transition-all shadow-xl shadow-red-900/20">
+              Partner With Us
             </Link>
-            <Link href="/services" className="border border-slate-200 text-slate-600 px-8 py-3 rounded-full text-[11px] font-semibold uppercase tracking-widest hover:bg-slate-50 transition-all flex items-center gap-2">
-              Our Services <ArrowRight className="w-3 h-3" />
+            <Link href="/services" className="bg-white/5 border border-white/10 text-white px-10 py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
+              Explore Services <ArrowRight size={14} />
             </Link>
           </div>
         </div>
       </section>
-
     </main>
   );
 }
 
-// --- HELPER COMPONENT ---
+// --- REFINED HELPERS ---
 
-function ValueCard({ icon, title, desc }: { icon: any, title: string, desc: string }) {
+function StatItem({ value, label }: { value: string, label: string }) {
+    return (
+        <div>
+            <p className="text-2xl font-bold text-slate-950 tracking-tighter">{value}</p>
+            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</p>
+        </div>
+    );
+}
+
+function ValueCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <div className="bg-white p-8 rounded-2xl border border-slate-200/60 hover:border-red-500/30 transition-all duration-300">
-      <div className="text-red-600 mb-4">{icon}</div>
-      <h3 className="text-base font-semibold text-slate-900 mb-2">{title}</h3>
-      <p className="text-slate-500 text-[13px] font-light leading-relaxed">{desc}</p>
+    <div className="group bg-[#F8FAFC] p-8 rounded-3xl border border-transparent hover:border-red-500/10 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500">
+      <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-red-600 mb-6 shadow-sm border border-slate-100 group-hover:bg-red-600 group-hover:text-white transition-all duration-500">
+        {icon}
+      </div>
+      <h3 className="text-sm font-bold text-slate-900 mb-3 uppercase tracking-wider">{title}</h3>
+      <p className="text-slate-500 text-[13px] font-medium leading-relaxed">{desc}</p>
     </div>
   );
 }

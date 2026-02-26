@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Truck, Lock, ShieldCheck, ArrowRight, Package } from "lucide-react";
+import { Lock, ShieldCheck, ArrowRight, Package } from "lucide-react";
+import { loginUser } from "./actions";
 
 export default function LoginPage() {
   return (
@@ -25,11 +26,15 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form action={loginUser} className="space-y-6">
             <div className="space-y-2">
-              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Institutional Email</label>
+              <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+                Institutional Email
+              </label>
               <input 
-                type="email" 
+                type="email"
+                name="email"   // IMPORTANT
+                required
                 placeholder="name@company.com" 
                 className="w-full px-5 py-4 text-sm rounded-full bg-slate-50 border border-slate-100 outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-300"
               />
@@ -37,12 +42,19 @@ export default function LoginPage() {
 
             <div className="space-y-2">
               <div className="flex justify-between items-center mb-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Access Key</label>
-                <Link href="/forgot-password" className="text-[10px] font-bold text-red-600 uppercase tracking-widest hover:text-slate-950 transition-colors">Forgot?</Link>
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+                  Access Key
+                </label>
+                <Link href="/forgot-password" className="text-[10px] font-bold text-red-600 uppercase tracking-widest hover:text-slate-950 transition-colors">
+                  Forgot?
+                </Link>
               </div>
+
               <div className="relative">
                 <input 
-                  type="password" 
+                  type="password"
+                  name="password"   // IMPORTANT
+                  required
                   placeholder="••••••••" 
                   className="w-full px-5 py-4 text-sm rounded-full bg-slate-50 border border-slate-100 outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-300"
                 />
@@ -50,7 +62,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <button className="w-full bg-slate-950 text-white py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-red-600 shadow-xl shadow-slate-200 transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-3">
+            <button type="submit" className="w-full bg-slate-950 text-white py-4 rounded-full text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-red-600 shadow-xl shadow-slate-200 transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-3">
               Authorize Access <ArrowRight className="w-4 h-4" />
             </button>
           </form>

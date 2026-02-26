@@ -1,7 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-import { Truck, ArrowRight, Package, ShieldCheck, Globe } from "lucide-react";
+import { ArrowRight, Package, ShieldCheck, Globe } from "lucide-react";
+import { registerUser } from "./actions";
 
 export default function RegisterPage() {
   return (
@@ -38,7 +39,7 @@ export default function RegisterPage() {
 
           <div className="mt-12 pt-10 border-t border-white/5">
             <p className="text-slate-500 text-[11px] font-medium leading-relaxed italic">
-              "The onboarding was surprisingly fast. I was tracking my first shipment in under 2 minutes."
+              The onboarding was surprisingly fast. I was tracking my first shipment in under 2 minutes.
             </p>
             <div className="flex items-center gap-3 mt-4">
               <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-[10px] text-white font-bold tracking-tighter">AK</div>
@@ -66,13 +67,15 @@ export default function RegisterPage() {
             <p className="text-[13px] text-slate-400 font-light">Join the most reliable logistics network in Madhya Pradesh.</p>
           </div>
 
-          <form className="space-y-6">
+          <form action={registerUser} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
-              <FormGroup label="First Name" placeholder="Rahul" />
-              <FormGroup label="Last Name" placeholder="Sharma" />
+              <FormGroup label="First Name" name="firstName" required placeholder="Rahul" />
+              <FormGroup label="Last Name" name="lastName" required placeholder="Sharma" />
             </div>
 
-            <FormGroup label="Phone Number" type="tel" placeholder="+91 00000 00000" />
+            <FormGroup label="Email" name="email" type="email" required placeholder="name@company.com" />
+            <FormGroup label="Phone Number" name="phone" type="tel" required placeholder="+91 00000 00000" />
+            <FormGroup label="Password" name="password" type="password" required placeholder="••••••••" />
 
             <div className="space-y-2">
               <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Account Type</label>
@@ -106,19 +109,21 @@ export default function RegisterPage() {
 
 // --- HELPER COMPONENTS ---
 
-function FormGroup({ label, ...props }: any) {
+function FormGroup({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">{label}</label>
+      <label className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+        {label}
+      </label>
       <input 
         {...props}
-        className="w-full px-5 py-4 text-sm rounded-full bg-slate-50 border border-slate-100 outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-300 font-light" 
+        className="w-full px-5 py-4 text-sm rounded-full bg-slate-50 border border-slate-100 outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-300 font-light"
       />
     </div>
   );
 }
 
-function FeatureItem({ icon, title, desc }: any) {
+function FeatureItem({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string}) {
   return (
     <div className="flex gap-4 items-start">
       <div className="mt-1 p-2 bg-white/5 rounded-lg text-red-500 border border-white/10">

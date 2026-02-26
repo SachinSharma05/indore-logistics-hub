@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { AlertCircle, X, Send, CheckCircle } from "lucide-react";
 
-import { createComplaint } from "../app/dashboard/complaints/actions"; 
+import { createComplaint } from "../app/complaints/actions"; 
 
 export default function ComplaintModal({ isOpen, onClose, awb, clientId }: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
