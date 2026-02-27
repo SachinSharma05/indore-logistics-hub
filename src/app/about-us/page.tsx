@@ -8,7 +8,6 @@ export default function AboutPage() {
       
       {/* 1. CINEMATIC HERO */}
       <section className="bg-slate-950 pt-24 pb-32 px-6 relative overflow-hidden">
-        {/* Subtle Grid Background Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
         <div className="max-w-5xl mx-auto text-center relative z-10">

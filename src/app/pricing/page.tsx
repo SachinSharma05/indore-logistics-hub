@@ -1,210 +1,187 @@
-import { Zap, Building2, Check, Calculator, ArrowRight, Wallet, Receipt, ShieldCheck, Box } from "lucide-react";
+import React from 'react';
 import Link from 'next/link';
+import { Check, Box, Zap, Smartphone, Receipt, Building2, LineChart, BadgeCheck, ArrowUpRight } from 'lucide-react';
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[#F8FAFC]">
+    <main className="min-h-screen bg-[#FDFDFF] font-sans">
       
-      {/* --- 1. INDUSTRIAL HERO --- */}
-      <section className="bg-slate-950 pt-24 pb-32 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#ef44440a,transparent)]" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-6 block">
-            Institutional Rates
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
-            Transparent Logistics <br />
-            <span className="text-red-600 italic font-light">Without the Surcharges</span>
+      {/* --- 1. HERO SECTION (Custom Content) --- */}
+      <section className="bg-white pt-15 pb-16 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
+            Scale your logistics with <span className="text-[#6366F1]">Smarter Shipping</span>
           </h1>
-          <p className="text-slate-400 text-sm md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-            From single-parcel home pickups to large-scale industrial freight, 
-            we provide standardized pricing for the Central India hub.
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+            Standardized freight rates and tech-enabled tracking for Madhya Pradesh`s growing business ecosystem. 
           </p>
         </div>
       </section>
 
       {/* --- 2. PRICING CARDS --- */}
-      <section className="py-20 px-6 -mt-20 relative z-20">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
+      <section className="pb-24 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <PricingCard 
-            title="Individual"
-            price="Market Rate"
-            description="Perfect for one-time home shifting or personal parcel delivery."
-            type="Pay-as-you-go"
+            title="Starter"
+            monthlyFee="FREE"
+            avgCost="₹45"
+            description="Perfect for casual sellers or small home-based businesses."
             features={[
-              "Instant Online Booking",
-              "Doorstep Pickup in 2 Hours",
-              "Real-time GPS Tracking",
-              "Standard Transit Insurance"
+              "Access to 5+ Courier Partners",
+              "Standard API Integration",
+              "Next-day Pickup scheduling",
+              "Email & Chat Support"
             ]}
-            buttonText="Schedule Pickup"
-            highlight={false}
-            icon={<Box size={20} />}
           />
 
           <PricingCard 
-            title="Business Pro"
-            price="₹15/kg"
-            description="Optimized for Indore's D2C brands & local Rajwada merchants."
-            type="Prepaid Wallet"
+            title="Merchant"
+            monthlyFee="₹199/m"
+            avgCost="₹42"
+            description="Built for retail shops scaling their online presence."
             features={[
-              "Discounted Express Shipping",
-              "Integrated COD Management",
-              "Bulk Manifest Uploads",
-              "Priority Customer Support",
-              "Free Insurance (up to ₹5000)"
+              "Discounted Intra-City Rates",
+              "Automated Label Printing",
+              "Priority Warehouse Pickup",
+              "WhatsApp Tracking Alerts"
             ]}
-            buttonText="Open Merchant Account"
-            highlight={true}
-            icon={<Wallet size={20} />}
+            promo="Reach 50 monthly shipments to get your plan fee credited back."
           />
 
           <PricingCard 
             title="Enterprise"
-            price="Contractual"
-            description="For firms shipping 500+ units monthly with custom needs."
-            type="Postpaid Billing"
+            monthlyFee="₹499/m"
+            avgCost="₹38"
+            description="Optimized for high-volume manufacturing & distribution."
             features={[
-              "Monthly Net-30 Invoicing",
-              "Dedicated Account Manager",
-              "Full API Integration",
-              "Warehouse Fulfillment Ops",
-              "Reverse Logistics (RTO) Mgmt"
+              "Lowest Freight Surcharges",
+              "Custom Brand Tracking Page",
+              "Dedicated Service Manager",
+              "Advanced RTO Protection"
             ]}
-            buttonText="Talk to Dispatch"
-            highlight={false}
-            icon={<Building2 size={20} />}
+            promo="Reach 200 monthly shipments to get your plan fee credited back."
+            highlight={true}
+          />
+
+          <PricingCard 
+            title="Corporate"
+            monthlyFee="₹999/m"
+            avgCost="₹34"
+            description="Full-scale logistics stack for national distributors."
+            features={[
+              "Multi-location Pickup Sync",
+              "Postpaid Billing Cycles",
+              "Full API Access for ERPs",
+              "Insurance on Every Parcel"
+            ]}
+            promo="Reach 1000 monthly shipments to get your plan fee credited back."
           />
         </div>
       </section>
 
-      {/* --- 3. DYNAMIC CALCULATOR CTA --- */}
-      <section className="py-12 px-6">
-        <div className="max-w-5xl mx-auto bg-white rounded-[2.5rem] p-10 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-10 hover:border-red-600 transition-all duration-500">
-          <div className="flex gap-8 items-center">
-            <div className="w-16 h-16 bg-slate-950 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-slate-200">
-              <Calculator size={28} strokeWidth={1.5} />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-slate-950 tracking-tight">Need a volumetric quote?</h3>
-              <p className="text-slate-500 text-sm font-medium mt-1">Calculate precise costs based on dimensions, weight, and pincode.</p>
-            </div>
-          </div>
-          <Link href="/calculator" className="w-full md:w-auto bg-red-600 text-white px-10 py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-slate-950 transition-all text-center">
-            Open Rate Calculator
-          </Link>
-        </div>
-      </section>
-
-      {/* --- 4. THE BILLING LOGIC (Explainer) --- */}
-      <section className="py-24 max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-md">
-                <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Billing 101</span>
-                <h2 className="text-3xl font-bold text-slate-950 tracking-tight">Which model fits your cashflow?</h2>
-            </div>
-            <p className="text-slate-400 text-sm font-medium">Standardized for Madhya Pradesh business cycles.</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-10">
-          <div className="group p-10 bg-white border border-slate-200 rounded-[2.5rem] hover:shadow-xl transition-all duration-500">
-            <div className="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500 group-hover:text-white transition-all">
-                <Zap size={22} />
-            </div>
-            <h4 className="font-bold text-slate-950 text-xl mb-4">The Prepaid Advantage</h4>
-            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
-              Ideal for startups. Recharge your IL Wallet via UPI or Card. 
-              Shipping costs are deducted instantly per shipment. 
-              <span className="block mt-4 text-slate-900 font-bold">Best for: Small D2C, Boutique Shops, Freelancers.</span>
-            </p>
+      {/* --- 3. THE "SUPERIOR FEATURES" GRID (Original Content) --- */}
+      <section className="py-24 bg-[#F8FAFF] px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+              Powerful tools to <span className="text-indigo-600">accelerate</span> your <span className="text-amber-500">delivery speed</span>
+            </h2>
+            <p className="text-slate-500 mt-4 font-medium">More than just shipping—we manage your entire supply chain lifecycle.</p>
           </div>
 
-          <div className="group p-10 bg-white border border-slate-200 rounded-[2.5rem] hover:shadow-xl transition-all duration-500">
-            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500 group-hover:text-white transition-all">
-                <Receipt size={22} />
-            </div>
-            <h4 className="font-bold text-slate-950 text-xl mb-4">Postpaid Corporate</h4>
-            <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
-              Ship unlimited volumes and receive a single tax-compliant invoice at the end of the month. 
-              Subject to credit verification and minimum volume.
-              <span className="block mt-4 text-slate-900 font-bold">Best for: Manufacturing Units, Banks, E-comm Aggregators.</span>
-            </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureBox 
+              icon={<Zap className="text-emerald-500" />}
+              title="Smart Exception Handling"
+              desc="Our system flags delivery delays before they happen, allowing you to resolve issues with customers proactively."
+            />
+            <FeatureBox 
+              icon={<Smartphone className="text-blue-500" />}
+              title="Branded Post-Purchase"
+              desc="Direct your customers to your own tracking portal rather than courier sites to build brand loyalty."
+            />
+            <FeatureBox 
+              icon={<Receipt className="text-purple-500" />}
+              title="Fast-Track Remittance"
+              desc="Liquidate your COD payments faster with our accelerated settlement cycles to keep your cash flow healthy."
+            />
+            <FeatureBox 
+              icon={<Building2 className="text-indigo-500" />}
+              title="Unified Dashboard"
+              desc="Manage multiple carrier accounts, inventory, and returns through a single, easy-to-use control center."
+            />
+            <FeatureBox 
+              icon={<LineChart className="text-blue-400" />}
+              title="Flexible Credit Lines"
+              desc="Ship now and pay later. We offer revolving credit limits based on your monthly shipping volumes."
+            />
+            <FeatureBox 
+              icon={<BadgeCheck className="text-emerald-400" />}
+              title="Route Intelligence"
+              desc="Our AI suggests the fastest carrier based on real-time traffic, weather, and historical pincode performance."
+            />
           </div>
-        </div>
-      </section>
-
-      {/* --- 5. TRUST FOOTER --- */}
-      <section className="py-20 bg-slate-50 border-t border-slate-100 px-6">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 text-center md:text-left">
-            <div className="flex-1">
-                <ShieldCheck className="text-red-600 mb-4 mx-auto md:mx-0" size={32} />
-                <h5 className="font-bold text-slate-900 uppercase text-xs tracking-widest mb-2">Zero Hidden Fees</h5>
-                <p className="text-slate-500 text-xs font-medium leading-relaxed">Fuel surcharges and state taxes are calculated upfront. What you see is what you pay.</p>
-            </div>
-            <div className="w-px bg-slate-200 hidden md:block" />
-            <div className="flex-1">
-                <Box className="text-red-600 mb-4 mx-auto md:mx-0" size={32} />
-                <h5 className="font-bold text-slate-900 uppercase text-xs tracking-widest mb-2">Refund Policy</h5>
-                <p className="text-slate-500 text-xs font-medium leading-relaxed">Full credit back to wallet for shipments that fail to meet our 48-hour city delivery SLA.</p>
-            </div>
         </div>
       </section>
     </main>
   );
 }
 
-function PricingCard({ title, price, description, type, features, buttonText, highlight, icon }: 
-  {title: string, price: string, description: string, type: string, features: string[], buttonText: string, highlight?: boolean, icon?: React.ReactNode}) {
+// Core helpers
+function PricingCard({ title, monthlyFee, avgCost, description, features, promo, highlight }: any) {
   return (
-    <div className={`relative bg-white rounded-[2.5rem] p-10 border transition-all duration-700 ${
-      highlight 
-      ? 'border-red-600 shadow-2xl shadow-red-200 scale-105 z-10' 
-      : 'border-slate-200 hover:border-slate-400'
-    } flex flex-col`}>
-      
-      {highlight && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-lg shadow-red-200">
-          Recommended
-        </div>
-      )}
-      
-      <div className="mb-10">
-        <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${highlight ? 'bg-red-600 text-white' : 'bg-slate-50 text-slate-400'}`}>
-            {icon}
-        </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">{title}</h3>
-        <p className="text-slate-500 text-sm font-medium mb-8 leading-relaxed h-12">{description}</p>
-        
-        <div className="flex items-baseline gap-2">
-          <span className="text-4xl font-black text-slate-900 tracking-tighter">{price}</span>
-          {price.includes('₹') && <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">/ avg</span>}
-        </div>
-        
-        <div className="mt-6">
-          <span className={`text-[10px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest ${
-              highlight ? 'bg-red-50 text-red-600' : 'bg-slate-100 text-slate-500'
-          }`}>
-            {type}
-          </span>
+    <div className={`bg-white rounded-xl border p-6 flex flex-col h-full transition-all ${highlight ? 'border-indigo-200 shadow-xl ring-1 ring-indigo-100' : 'border-slate-100'}`}>
+      <div className="flex justify-between items-start mb-6">
+        <h3 className="text-lg font-bold text-slate-800">{title}</h3>
+        <span className="text-indigo-600 font-bold text-lg uppercase">{monthlyFee}</span>
+      </div>
+
+      <div className="bg-indigo-50/50 rounded-lg p-4 mb-6 flex justify-between items-center border border-indigo-100/50">
+        <span className="text-xs font-semibold text-slate-600 uppercase tracking-tight">Avg shipment cost*</span>
+        <div className="text-right">
+          <span className="text-2xl font-bold text-slate-900">{avgCost}</span>
+          <div className="h-0.5 w-full bg-slate-900/10 mt-1 border-b border-dashed border-slate-900/30" />
         </div>
       </div>
 
-      <ul className="space-y-5 mb-12 flex-grow">
-        {features.map((feat: string, i: number) => (
-          <li key={i} className="flex items-start gap-4 text-sm text-slate-600 font-medium">
-            <Check className="w-5 h-5 text-red-600 shrink-0 mt-0.5" strokeWidth={3} /> {feat}
-          </li>
-        ))}
-      </ul>
+      <p className="text-sm text-slate-500 mb-8 leading-relaxed font-medium">{description}</p>
 
-      <button className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all ${
-        highlight 
-        ? 'bg-slate-950 text-white hover:bg-red-600' 
-        : 'bg-slate-50 text-slate-900 hover:bg-slate-950 hover:text-white'
-      }`}>
-        {buttonText}
+      <div className="space-y-4 mb-8 flex-grow">
+        <p className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Includes:</p>
+        {features.map((f: string, i: number) => (
+          <div key={i} className="flex items-start gap-3">
+            <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" strokeWidth={3} />
+            <span className="text-sm text-slate-600 font-medium">{f}</span>
+          </div>
+        ))}
+      </div>
+
+      {promo && (
+        <div className="bg-blue-50/50 rounded-xl p-4 border border-blue-100 mb-6 flex gap-3">
+            <Box className="w-5 h-5 text-blue-500 shrink-0" />
+            <p className="text-[11px] text-blue-700 leading-snug font-medium">{promo}</p>
+        </div>
+      )}
+
+      <button className={`w-full py-4 rounded-xl font-bold text-sm transition-all ${highlight ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}>
+        Get Started
       </button>
+    </div>
+  );
+}
+
+function FeatureBox({ icon, title, desc }: any) {
+  return (
+    <div className="p-8 rounded-2xl border border-emerald-100 bg-white hover:border-indigo-200 transition-all group">
+      <div className="w-12 h-12 mb-6 flex items-center justify-center bg-slate-50 rounded-lg group-hover:scale-110 transition-transform">
+        {icon}
+      </div>
+      <h4 className="text-xl font-bold text-slate-900 mb-4">{title}</h4>
+      <p className="text-slate-500 text-sm leading-relaxed mb-6 font-medium">{desc}</p>
+      <Link href="#" className="text-indigo-600 text-sm font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+        Learn more <ArrowUpRight size={16} />
+      </Link>
     </div>
   );
 }
