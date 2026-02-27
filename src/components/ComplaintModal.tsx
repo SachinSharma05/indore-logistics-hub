@@ -1,7 +1,14 @@
 "use client";
-import { useState } from "react";
-import { AlertCircle, X, Send, CheckCircle } from "lucide-react";
 
+import React, { useState } from 'react';
+import { 
+  X, 
+  CheckCircle, 
+  Send, 
+  ShieldAlert, 
+  Clock,
+  MessageSquare
+} from "lucide-react";
 import { createComplaint } from "../app/complaints/actions"; 
 
 export default function ComplaintModal({ isOpen, onClose, awb, clientId }: any) {
@@ -12,84 +19,109 @@ export default function ComplaintModal({ isOpen, onClose, awb, clientId }: any) 
 
   async function handleSubmit(formData: FormData) {
     setIsSubmitting(true);
-    // Add client_id and awb to the formData manually or via hidden inputs
+    // Simulated API Call
     await createComplaint(formData); 
-    setIsSubmitting(false);
-    setIsSuccess(true);
     
-    // Close modal after 2 seconds on success
     setTimeout(() => {
-      setIsSuccess(false);
-      onClose();
-    }, 2000);
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      
+      setTimeout(() => {
+        setIsSuccess(false);
+        onClose();
+      }, 2500);
+    }, 1500);
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-      <div className="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden transition-all animate-in fade-in zoom-in duration-300">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-slate-900/60 backdrop-blur-md p-4 pt-25 transition-all">
+      <div className="bg-white w-full max-w-md rounded-[2rem] shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in duration-200">
         
-        {/* Modal Header */}
-        <div className="bg-red-50 p-6 flex justify-between items-center border-b border-red-100">
-          <div className="flex items-center gap-3">
-            <div className="bg-red-500 p-2 rounded-xl text-white">
-              <AlertCircle className="w-5 h-5" />
+        {/* --- MODAL HEADER --- */}
+        <div className="bg-rose-50/50 p-6 flex justify-between items-center border-b border-rose-100/50">
+          <div className="flex items-center gap-4">
+            <div className="bg-rose-500 p-2.5 rounded-xl text-white shadow-lg shadow-rose-200">
+              <ShieldAlert size={20} />
             </div>
             <div>
-              <h2 className="font-bold text-slate-900 leading-tight">Report an Issue</h2>
-              <p className="text-xs text-red-600 font-medium tracking-wide uppercase">ID: {awb}</p>
+              <h2 className="font-bold text-slate-900 text-[15px] leading-tight">Resolution Center</h2>
+              <div className="flex items-center gap-2 mt-0.5">
+                 <span className="text-[10px] bg-white border border-rose-200 text-rose-600 px-2 py-0.5 rounded-md font-bold tracking-wider uppercase">
+                   AWB: {awb}
+                 </span>
+              </div>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition text-slate-400">
-            <X className="w-5 h-5" />
+          <button 
+            onClick={onClose} 
+            className="p-2 hover:bg-white rounded-full transition-colors text-slate-400 hover:text-slate-600"
+          >
+            <X size={20} />
           </button>
         </div>
 
-        {/* Modal Body */}
+        {/* --- MODAL BODY --- */}
         <div className="p-8">
           {!isSuccess ? (
             <form action={handleSubmit} className="space-y-6">
-              {/* Hidden Inputs for Schema */}
               <input type="hidden" name="client_id" value={clientId} />
               <input type="hidden" name="awb" value={awb} />
 
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700">How can we help?</label>
+              <div className="space-y-3">
+                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                  <MessageSquare size={14} className="text-indigo-500" /> Issue Description
+                </label>
                 <textarea
                   name="message"
                   required
                   rows={4}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 focus:ring-2 focus:ring-red-500 focus:bg-white transition outline-none resize-none text-slate-700 placeholder:text-slate-400"
-                  placeholder="Tell us about the issue (e.g., Delay in pickup, damaged package...)"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:ring-4 focus:ring-indigo-500/5 focus:border-[#7C3AED] focus:bg-white transition-all outline-none resize-none text-[14px] font-medium text-slate-700 placeholder:text-slate-400"
+                  placeholder="Describe the problem (e.g., Driver didn't arrive, AWB mismatch, etc.)"
                 />
               </div>
 
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex gap-3 items-start">
-                <CheckCircle className="w-4 h-4 text-slate-400 mt-0.5" />
-                <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Submitting this will create an <strong>Open</strong> ticket. Our Indore resolution associate will review and respond within 4 working hours.
-                </p>
+              {/* --- RESOLUTION GUARANTEE --- */}
+              <div className="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100/50 flex gap-4 items-start">
+                <div className="p-2 bg-white rounded-lg text-indigo-500 shrink-0 shadow-sm">
+                  <Clock size={16} />
+                </div>
+                <div>
+                  <p className="text-[12px] font-bold text-indigo-900 uppercase tracking-tight">Rapid Support</p>
+                  <p className="text-[12px] text-indigo-700/80 font-medium leading-relaxed mt-1">
+                    Your request is prioritized. Our Indore dispatch team will review this manifest and respond within <strong className="text-indigo-900">4 business hours</strong>.
+                  </p>
+                </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-4 rounded-xl font-bold text-white transition-all flex items-center justify-center gap-2 ${
-                  isSubmitting ? 'bg-slate-400' : 'bg-red-600 hover:bg-red-700 shadow-lg shadow-red-200 active:scale-95'
+                className={`w-full py-4 rounded-xl font-bold text-[13px] uppercase tracking-widest text-white transition-all flex items-center justify-center gap-2 shadow-lg ${
+                  isSubmitting 
+                  ? 'bg-slate-400 cursor-not-allowed' 
+                  : 'bg-slate-900 hover:bg-[#7C3AED] shadow-indigo-100 active:scale-[0.98]'
                 }`}
               >
-                {isSubmitting ? 'Processing...' : (
-                  <>Submit Complaint <Send className="w-4 h-4" /></>
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2">
+                    <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Processing...
+                  </span>
+                ) : (
+                  <>File Complaint <Send size={14} /></>
                 )}
               </button>
             </form>
           ) : (
-            /* Success State */
-            <div className="py-10 text-center space-y-4">
-              <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-10 h-10" />
+            /* --- SUCCESS STATE --- */
+            <div className="py-8 text-center animate-in fade-in slide-in-from-bottom-4">
+              <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-emerald-100">
+                <CheckCircle size={36} strokeWidth={2.5} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900">Ticket Created!</h3>
-              <p className="text-slate-500 text-sm">Your complaint has been registered. You can track the status in the 'Complaints' tab.</p>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">Ticket Logged</h3>
+              <p className="text-slate-500 text-[14px] font-medium mt-2 px-4 leading-relaxed">
+                Your complaint has been assigned to a resolution officer. You'll receive an SMS update shortly.
+              </p>
             </div>
           )}
         </div>

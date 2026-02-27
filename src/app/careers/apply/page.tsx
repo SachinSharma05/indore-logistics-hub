@@ -1,55 +1,60 @@
-import { ArrowLeft, Upload, FileText, ShieldCheck, CheckCircle2, MoveRight } from "lucide-react";
 import Link from 'next/link';
+import React from 'react';
+import { ArrowLeft, Upload, FileText, ShieldCheck, CheckCircle2, MoveRight } from "lucide-react";
 
 export default function ApplyPage() {
   return (
-    <main className="min-h-screen bg-[#F8FAFC]">
+    <main className="min-h-screen bg-white">
       
-      {/* --- 1. MINIMAL NAV/HEADER --- */}
-      <nav className="py-8 px-6 max-w-7xl mx-auto">
-        <Link href="/careers" className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-red-600 transition-colors">
-          <ArrowLeft size={14} /> Back to Openings
-        </Link>
+      {/* --- 1. MINIMAL NAV --- */}
+      <nav className="py-6 px-6 border-b border-slate-100 bg-[#f9fafb]">
+        <div className="max-w-6xl mx-auto">
+          <Link href="/careers" className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-tight text-slate-500 hover:text-[#7C3AED] transition-colors">
+            <ArrowLeft size={14} /> Back to Open Positions
+          </Link>
+        </div>
       </nav>
 
-      <section className="pb-24 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
+      <section className="py-12 px-6">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
           
           {/* --- LEFT: ROLE SUMMARY (5 Cols) --- */}
-          <div className="lg:col-span-5 space-y-12">
+          <div className="lg:col-span-5 space-y-10">
             <div>
-              <span className="text-red-600 text-[10px] font-black tracking-[0.4em] uppercase mb-4 block">Application Portal</span>
-              <h1 className="text-4xl font-bold text-slate-950 tracking-tight mb-6">Operations Manager</h1>
-              <div className="flex flex-wrap gap-4">
+              <span className="text-[#6366F1] text-[11px] font-bold tracking-widest uppercase mb-3 block">Application Portal</span>
+              <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-5">Operations Manager</h1>
+              <div className="flex flex-wrap gap-2">
                  <Tag label="Full-Time" />
                  <Tag label="Dewas Naka Hub" />
                  <Tag label="Operations" />
               </div>
             </div>
 
-            <div className="space-y-8">
-                <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-4">Our Selection Process</h3>
+            <div className="space-y-6">
+                <h3 className="text-[13px] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3">Hiring Process</h3>
                 <ProcessStep 
                     number="01" 
                     title="Profile Verification" 
-                    desc="Our HR team reviews your resume and background details for role alignment." 
+                    desc="Our HR team reviews your resume for technical alignment." 
                 />
                 <ProcessStep 
                     number="02" 
                     title="Initial Screening" 
-                    desc="A brief 15-minute call to discuss your experience and expectations." 
+                    desc="A brief 15-minute call to discuss your logistics background." 
                 />
                 <ProcessStep 
                     number="03" 
                     title="Technical Discussion" 
-                    desc="In-person meeting at our Vijay Nagar HQ with the Department Head." 
+                    desc="In-person meeting at our Vijay Nagar HQ with the Hub Lead." 
                 />
             </div>
 
-            <div className="bg-slate-950 p-8 rounded-[2rem] text-white">
-                <ShieldCheck className="text-red-600 mb-4" size={32} />
-                <h4 className="font-bold text-lg mb-2 tracking-tight">Data Privacy</h4>
-                <p className="text-slate-400 text-xs font-medium leading-relaxed">
+            <div className="bg-[#f8fafc] p-6 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-3 mb-3">
+                  <ShieldCheck className="text-[#7C3AED]" size={20} />
+                  <h4 className="font-bold text-[15px] text-slate-900 tracking-tight">Data Privacy</h4>
+                </div>
+                <p className="text-slate-500 text-[13px] leading-relaxed">
                     Your personal information is encrypted and only accessible by our recruitment 
                     officers. We never share applicant data with third parties.
                 </p>
@@ -58,15 +63,15 @@ export default function ApplyPage() {
 
           {/* --- RIGHT: THE FORM (7 Cols) --- */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-8 md:p-12 rounded-[3rem] border border-slate-200 shadow-2xl shadow-slate-200/40">
-              <form className="space-y-10">
+            <div className="bg-white p-8 md:p-10 rounded-xl border border-slate-200 shadow-xl shadow-slate-100">
+              <form className="space-y-8">
                 
                 {/* Personal Section */}
                 <div>
-                    <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
-                       <span className="w-8 h-px bg-slate-100" /> Personal Details
+                    <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+                        Personal Details <span className="flex-1 h-px bg-slate-100" />
                     </h2>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-5">
                         <FormInput label="Full Name" placeholder="e.g. Rahul Sharma" />
                         <FormInput label="Phone Number" placeholder="+91 00000 00000" />
                         <div className="md:col-span-2">
@@ -77,44 +82,44 @@ export default function ApplyPage() {
 
                 {/* Professional Section */}
                 <div>
-                    <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
-                       <span className="w-8 h-px bg-slate-100" /> Professional Background
+                    <h2 className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+                        Professional <span className="flex-1 h-px bg-slate-100" />
                     </h2>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <FormInput label="Current Organization" placeholder="Company Name" />
+                    <div className="grid md:grid-cols-2 gap-5">
+                        <FormInput label="Current Organization" placeholder="Current Company" />
                         <FormInput label="Total Experience" placeholder="e.g. 5 Years" />
-                        <div className="md:col-span-2">
-                            <FormInput label="LinkedIn Profile (Optional)" placeholder="linkedin.com/in/username" />
-                        </div>
                     </div>
                 </div>
 
                 {/* Resume Upload */}
                 <div>
-                    <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 block">Resume / CV</h2>
-                    <div className="relative group cursor-pointer">
+                    <h2 className="text-[12px] font-bold text-slate-500 uppercase tracking-widest mb-4 block">Resume / CV</h2>
+                    <div className="relative group">
                         <input 
                             type="file" 
                             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
                         />
-                        <div className="border-2 border-dashed border-slate-200 rounded-[2rem] p-12 text-center group-hover:border-red-600 group-hover:bg-red-50/30 transition-all duration-500">
-                            <div className="w-16 h-16 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:text-red-600 transition-colors">
-                                <Upload size={24} />
+                        <div className="border-2 border-dashed border-slate-200 rounded-lg p-10 text-center group-hover:border-[#7C3AED] group-hover:bg-indigo-50/30 transition-all">
+                            <div className="w-12 h-12 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:text-[#7C3AED] transition-colors">
+                                <Upload size={20} />
                             </div>
-                            <p className="text-slate-900 font-bold text-sm">Upload your Resume</p>
-                            <p className="text-slate-400 text-xs mt-1">PDF or Word (Max 5MB)</p>
+                            <p className="text-slate-900 font-bold text-[14px]">Click or drag to upload</p>
+                            <p className="text-slate-400 text-[12px] mt-1">PDF, DOCX (Max 5MB)</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Submit */}
-                <div className="pt-6">
-                    <button className="w-full bg-slate-950 text-white py-6 rounded-2xl font-black text-[11px] uppercase tracking-[0.4em] hover:bg-red-600 transition-all shadow-xl shadow-slate-950/10 flex items-center justify-center gap-4">
-                        Submit Application <MoveRight size={16} />
+                <div className="pt-4">
+                    <button className="w-full bg-[#7C3AED] text-white py-4 rounded-md font-bold text-[14px] uppercase tracking-wider hover:bg-[#6D28D9] transition-all shadow-lg shadow-indigo-100 flex items-center justify-center gap-3">
+                        Submit Application <MoveRight size={18} />
                     </button>
-                    <p className="text-center text-slate-400 text-[10px] font-medium mt-6">
-                        By clicking submit, you agree to our Terms of Recruitment and Privacy Policy.
-                    </p>
+                    <div className="flex items-start gap-2 mt-5">
+                        <CheckCircle2 size={14} className="text-emerald-500 mt-0.5" />
+                        <p className="text-slate-400 text-[11px] leading-snug">
+                            By submitting, you agree to our recruitment terms and consent to being contacted regarding this role.
+                        </p>
+                    </div>
                 </div>
 
               </form>
@@ -127,11 +132,11 @@ export default function ApplyPage() {
   );
 }
 
-// --- HELPERS ---
+// --- REFINED HELPERS ---
 
 function Tag({ label }: { label: string }) {
     return (
-        <span className="bg-white border border-slate-200 px-4 py-1.5 rounded-lg text-[10px] font-black text-slate-600 uppercase tracking-widest">
+        <span className="bg-slate-50 border border-slate-200 px-3 py-1 rounded text-[11px] font-bold text-slate-600 uppercase tracking-tight">
             {label}
         </span>
     );
@@ -139,11 +144,11 @@ function Tag({ label }: { label: string }) {
 
 function ProcessStep({ number, title, desc }: { number: string, title: string, desc: string }) {
     return (
-        <div className="flex gap-6">
-            <span className="text-red-600 font-black text-lg italic tracking-tighter">{number}</span>
+        <div className="flex gap-4">
+            <span className="text-[#7C3AED] font-bold text-[15px] tabular-nums">{number}.</span>
             <div>
-                <h4 className="text-slate-950 font-bold text-sm mb-1">{title}</h4>
-                <p className="text-slate-500 text-xs font-medium leading-relaxed">{desc}</p>
+                <h4 className="text-slate-900 font-bold text-[14px] mb-1">{title}</h4>
+                <p className="text-slate-500 text-[12px] leading-relaxed">{desc}</p>
             </div>
         </div>
     );
@@ -151,11 +156,11 @@ function ProcessStep({ number, title, desc }: { number: string, title: string, d
 
 function FormInput({ label, ...props }: any) {
   return (
-    <div className="space-y-3">
-      <label className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] block ml-1">{label}</label>
+    <div className="space-y-2">
+      <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block ml-1">{label}</label>
       <input 
         {...props}
-        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 outline-none focus:ring-4 focus:ring-red-500/5 focus:border-red-600 text-sm font-medium transition-all placeholder:text-slate-300" 
+        className="w-full bg-slate-50 border border-slate-200 rounded-md px-4 py-3 outline-none focus:ring-2 focus:ring-[#7C3AED]/10 focus:border-[#7C3AED] text-[14px] font-medium transition-all placeholder:text-slate-400" 
       />
     </div>
   );
