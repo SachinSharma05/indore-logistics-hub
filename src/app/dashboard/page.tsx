@@ -10,16 +10,19 @@ import {
   Search, 
   Filter, 
   MapPin, 
-  ChevronRight,
-  MoreVertical,
   ArrowUpRight,
-  Download
+  Download,
+  Trash2,
+  ChevronDown,
+  AlertTriangle,
+  X
 } from "lucide-react";
 import ComplaintModal from '../../components/ComplaintModal';
 import { useState } from 'react';
 
 export default function CustomerDashboard() {
   const [selectedAwb, setSelectedAwb] = useState<string | null>(null);
+  const [cancellingAwb, setCancellingAwb] = useState<string | null>(null);
   const clientId = 123;
 
   const shipments = [
@@ -86,7 +89,7 @@ export default function CustomerDashboard() {
                   <th className="px-6 py-4">Route</th>
                   <th className="px-6 py-4">Weight</th>
                   <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4 text-right">Details</th>
+                  <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -114,6 +117,20 @@ export default function CustomerDashboard() {
                         <Link href={`/track/${item.id}`} className="bg-slate-100 text-slate-600 p-2 rounded-md hover:bg-[#7C3AED] hover:text-white transition-all">
                           <ArrowUpRight size={16} />
                         </Link>
+
+                        <button
+                          disabled={item.status !== "Pending Pickup"}
+                          onClick={() => setCancellingAwb(item.id)}
+                          className={`p-2 rounded-lg transition-all ${
+                            item.status === "Pending Pickup" 
+                            ? "text-slate-400 hover:text-rose-600 hover:bg-rose-50" 
+                            : "text-slate-200 cursor-not-allowed"
+                          }`}
+                          title="Cancel Pickup"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+
                         <button
                           onClick={() => setSelectedAwb(item.id)}
                           className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
@@ -141,6 +158,13 @@ export default function CustomerDashboard() {
               clientId={clientId}
             />
         </div>
+      )}
+      {/* --- CANCELLATION MODAL --- */}
+      {cancellingAwb && (
+        <CancelPickupModal 
+          awb={cancellingAwb} 
+          onClose={() => setCancellingAwb(null)} 
+        />
       )}
     </div>
   );
@@ -175,5 +199,84 @@ function StatusBadge({ status }: { status: string }) {
     <span className={`px-2.5 py-1 rounded text-[11px] font-bold border ${styles[status] || 'bg-slate-100 border-slate-200'}`}>
       {status}
     </span>
+  );
+}
+
+function CancelPickupModal({ awb, onClose }: { awb: string, onClose: () => void }) {
+  const [reason, setReason] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const reasons = [
+    "Package not ready",
+    "Customer cancelled order",
+    "Incorrect weight/dimensions",
+    "Duplicate booking",
+    "Found better rates elsewhere",
+    "Other"
+  ];
+
+  const handleCancel = () => {
+    setIsSubmitting(true);
+    // Logic to call API here
+    setTimeout(() => {
+      setIsSubmitting(false);
+      onClose();
+    }, 1500);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[210] flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-md rounded-[2rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+        <div className="bg-rose-50 p-6 flex justify-between items-center border-b border-rose-100">
+          <div className="flex items-center gap-3">
+            <div className="bg-rose-500 p-2 rounded-xl text-white">
+              <AlertTriangle size={20} />
+            </div>
+            <h2 className="font-bold text-slate-900">Cancel Pickup Request</h2>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors"><X size={20}/></button>
+        </div>
+
+        <div className="p-8">
+          <p className="text-sm text-slate-600 mb-6">
+            You are about to cancel shipment <span className="font-bold text-slate-900">#{awb}</span>. This will notify the dispatch hub immediately.
+          </p>
+
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Reason for cancellation</label>
+              <div className="relative">
+                <select 
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-700 outline-none focus:ring-4 focus:ring-rose-500/5 focus:border-rose-500 appearance-none transition-all"
+                  value={reason}
+                  onChange={(e) => setReason(e.target.value)}
+                >
+                  <option value="" disabled>Select a reason...</option>
+                  {reasons.map(r => <option key={r} value={r}>{r}</option>)}
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
+              </div>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl text-[11px] text-amber-700 font-medium leading-relaxed">
+              <strong>Note:</strong> Cancellations are permanent. If the rider has already reached your location, a platform fee may still apply.
+            </div>
+
+            <div className="flex flex-col gap-3 pt-4">
+              <button 
+                onClick={handleCancel}
+                disabled={!reason || isSubmitting}
+                className="w-full py-4 bg-rose-600 hover:bg-rose-700 disabled:bg-slate-200 text-white rounded-xl font-bold text-[13px] uppercase tracking-widest transition-all shadow-lg shadow-rose-100"
+              >
+                {isSubmitting ? "Processing..." : "Confirm Cancellation"}
+              </button>
+              <button onClick={onClose} className="w-full py-3 text-slate-400 hover:text-slate-600 font-bold text-[12px] uppercase tracking-widest transition-colors">
+                Keep This Pickup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
