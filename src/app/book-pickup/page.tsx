@@ -20,7 +20,7 @@ export default function BookPickupPage() {
       <div className="max-w-6xl mx-auto">
         
         {/* --- HEADER --- */}
-        <div className="mb-10">
+        <div className="mb-10 ">
           <div className="flex items-center gap-2 mb-3">
              <Truck size={16} className="text-[#7C3AED]" />
              <span className="text-[#7C3AED] text-[11px] font-bold tracking-[0.3em] uppercase block">Fulfillment Request</span>

@@ -34,7 +34,7 @@ export default function PriceCalculator() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] pb-20">
       {/* --- HERO HEADER --- */}
-      <section className="bg-[#0F172A] pt-32 pb-20 px-6">
+      <section className="bg-[#0F172A] pt-15 pb-20 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-4">

@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Truck, ArrowRight, ShieldCheck, ArrowUp, Zap, ClipboardCheck, PackageCheck, UserCheck, PlayCircle, BarChart3, ChevronRight 
+import { Truck, ArrowRight, ShieldCheck, Zap, ClipboardCheck, PackageCheck, UserCheck, PlayCircle, BarChart3, ChevronRight 
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 // page.tsx ------------------------------------------
 export default function HomePage() {
@@ -44,7 +45,7 @@ function ModernHero() {
               Integrate with 25+ courier partners, manage orders, and track shipments across the globe with our tech-enabled logistics platform.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/signup" className="bg-[#6366F1] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-[#4F46E5] transition-all shadow-md">
+              <Link href="/register" className="bg-[#6366F1] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-[#4F46E5] transition-all shadow-md">
                 Try for Free
               </Link>
               <button className="flex items-center gap-2 text-[#1E293B] px-5 py-3 rounded-lg font-semibold text-sm hover:bg-slate-50 transition-all border border-slate-200">
@@ -59,7 +60,7 @@ function ModernHero() {
               </div>
               <div className="w-px h-10 bg-slate-200" />
               <div>
-                <p className="text-xl font-bold text-[#1E293B]">220+</p>
+                <p className="text-xl font-bold text-[#1E293B]">100+</p>
                 <p className="text-xs text-[#64748B] font-bold uppercase tracking-wider">Countries Served</p>
               </div>
             </div>
@@ -69,19 +70,22 @@ function ModernHero() {
           <div className="w-full lg:w-1/2 relative">
              <div className="bg-[#F8FAFC] border border-slate-200 rounded-3xl p-2 shadow-2xl relative overflow-hidden">
                 <div className="bg-white rounded-2xl border border-slate-100 p-6 flex flex-col gap-6">
-                   {/* Mock UI Elements matching Shiprocket's screenshot style */}
                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-bold text-slate-800">Financial Performance</span>
+                      <span className="text-sm font-bold text-slate-800">Performance Overview</span>
                       <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-1 rounded-md">Live Status</span>
                    </div>
-                   <div className="grid grid-cols-2 gap-4">
+                   <div className="grid grid-cols-3 gap-4">
                       <div className="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100">
-                         <p className="text-[10px] text-indigo-500 font-bold uppercase mb-1">Total Revenue</p>
-                         <p className="text-2xl font-bold text-slate-900">₹14,50,000</p>
+                         <p className="text-[10px] text-indigo-500 font-bold uppercase mb-1">Active Clients</p>
+                         <p className="text-2xl font-bold text-slate-900">2000+</p>
+                      </div>
+                      <div className="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100">
+                         <p className="text-[10px] text-indigo-500 font-bold uppercase mb-1">Shipments Delivered</p>
+                         <p className="text-2xl font-bold text-slate-900">12,500+</p>
                       </div>
                       <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                         <p className="text-[10px] text-slate-500 font-bold uppercase mb-1">Active Shipments</p>
-                         <p className="text-2xl font-bold text-slate-900">1,248</p>
+                         <p className="text-[10px] text-indigo-500 font-bold uppercase mb-1">Active Providers</p>
+                         <p className="text-2xl font-bold text-slate-900">20+</p>
                       </div>
                    </div>
                    {/* Simplified Graph Visual */}
@@ -100,57 +104,6 @@ function ModernHero() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ServiceHighlights() {
-  return (
-    <section className="py-20 bg-[#FDFDFF] px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div className="max-w-xl">
-             <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Everything you need to <span className="text-[#6366F1]">scale faster</span></h2>
-             <p className="text-slate-500 font-medium">Streamline your shipping operations with our suite of logistics tools.</p>
-          </div>
-          <Link href="/products" className="hidden md:flex items-center gap-2 text-sm font-bold text-[#6366F1] hover:underline">
-            View all products <ChevronRight size={16} />
-          </Link>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          <CompactFeatureCard 
-            title="AI-Courier Selection" 
-            desc="Our proprietary engine chooses the best courier based on weight and destination."
-            icon={<Zap className="text-amber-500" />}
-          />
-          <CompactFeatureCard 
-            title="Real-time Analytics" 
-            desc="Detailed reports on RTO, COD remittance, and transit performance."
-            icon={<BarChart3 className="text-indigo-500" />}
-          />
-          <CompactFeatureCard 
-            title="Post-Purchase Tech" 
-            desc="Engage customers with branded tracking pages and NDR automation."
-            icon={<Zap className="text-purple-500" />}
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CompactFeatureCard({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
-  return (
-    <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-indigo-300 transition-all group hover:shadow-lg hover:shadow-indigo-100">
-      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-indigo-50 transition-colors">
-        {icon}
-      </div>
-      <h3 className="text-lg font-bold text-slate-800 mb-3">{title}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed font-medium mb-6">{desc}</p>
-      <Link href="#" className="text-xs font-bold text-indigo-600 uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
-        Explore <ArrowRight size={14} />
-      </Link>
-    </div>
   );
 }
 
@@ -204,6 +157,57 @@ function PartnerNetwork() {
   );
 }
 
+function ServiceHighlights() {
+  return (
+    <section className="py-15 bg-[#FDFDFF] px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-12">
+          <div className="max-w-xl">
+             <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Everything you need to <span className="text-[#6366F1]">scale faster</span></h2>
+             <p className="text-slate-500 font-medium">Streamline your shipping operations with our suite of logistics tools.</p>
+          </div>
+          <Link href="/products" className="hidden md:flex items-center gap-2 text-sm font-bold text-[#6366F1] hover:underline">
+            View all products <ChevronRight size={16} />
+          </Link>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <CompactFeatureCard 
+            title="AI-Courier Selection" 
+            desc="Our proprietary engine chooses the best courier based on weight and destination."
+            icon={<Zap className="text-amber-500" />}
+          />
+          <CompactFeatureCard 
+            title="Real-time Analytics" 
+            desc="Detailed reports on RTO, COD remittance, and transit performance."
+            icon={<BarChart3 className="text-indigo-500" />}
+          />
+          <CompactFeatureCard 
+            title="Post-Purchase Tech" 
+            desc="Engage customers with branded tracking pages and NDR automation."
+            icon={<Zap className="text-purple-500" />}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CompactFeatureCard({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
+  return (
+    <div className="bg-white p-8 rounded-2xl border border-slate-200 hover:border-indigo-300 transition-all group hover:shadow-lg hover:shadow-indigo-100">
+      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-indigo-50 transition-colors">
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold text-slate-800 mb-3">{title}</h3>
+      <p className="text-sm text-slate-500 leading-relaxed font-medium mb-6">{desc}</p>
+      <Link href="#" className="text-xs font-bold text-indigo-600 uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
+        Explore <ArrowRight size={14} />
+      </Link>
+    </div>
+  );
+}
+
 function DeliveryProcess() {
   const steps = [
     { id: "01", title: "Instant Booking", desc: "Digital label generation via our automated API manifest system.", icon: <ClipboardCheck className="w-5 h-5" /> },
@@ -213,10 +217,10 @@ function DeliveryProcess() {
   ];
 
   return (
-    <section className="w-full py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 relative">
+    <section className="py-15 bg-[#FDFDFF] px-6">
+      <div className="max-w-7xl mx-auto">
         
-        <div className="mb-16 text-left border-l-4 border-[#6366F1] pl-6">
+        <div className="max-w-xl">
           <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
             Our <span className="text-[#6366F1]">Operational</span> Blueprint
           </h2>
@@ -279,7 +283,7 @@ function FinalCTA() {
             
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <Link 
-                href="/signup" 
+                href="/register" 
                 className="bg-[#6366F1] text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-[#4F46E5] transition-all shadow-lg hover:shadow-indigo-500/25"
               >
                 Sign Up for Free
@@ -435,60 +439,5 @@ function TestimonialSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ScrollToTop() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const toggleVisibility = () => setIsVisible(window.scrollY > 500);
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
-
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-8 right-8 z-50 p-3 bg-slate-900 text-white rounded-xl shadow-2xl transition-all duration-300 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-      } hover:bg-[#6366F1] hover:-translate-y-1 border border-white/10`}
-      aria-label="Scroll to top"
-    >
-      <ArrowUp className="w-5 h-5" />
-    </button>
-  );
-}
-
-function WhatsAppButton() {
-  const phoneNumber = "919340384339";
-  const message = "Hello! I'm interested in your logistics services. Can you help me?";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-  return (
-    <div className="fixed left-8 bottom-8 z-50 flex flex-col items-start group">
-      {/* Tooltip - Now sits above the button */}
-      <span className="mb-3 px-3 py-1.5 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-[0.15em] rounded-lg opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none shadow-xl border border-white/10">
-        Support Online
-      </span>
-      
-      <Link 
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-[0_15px_30px_-5px_rgba(37,211,102,0.4)] hover:scale-110 hover:rotate-3 transition-all duration-300 active:scale-95 relative"
-      >
-        {/* Subtle Pulse Effect */}
-        <span className="absolute inset-0 rounded-2xl bg-[#25D366] animate-ping opacity-20 group-hover:hidden" />
-        
-        <svg 
-          viewBox="0 0 24 24" 
-          className="w-7 h-7 fill-current relative z-10"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.434 5.71 1.434h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-        </svg>
-      </Link>
-    </div>
   );
 }

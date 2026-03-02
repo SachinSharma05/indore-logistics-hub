@@ -38,40 +38,34 @@ export default function ServicesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
-      
-      {/* --- SHIPROCKET HERO --- */}
-      <section className="bg-[#f9fafb] py-20 px-6 border-b border-slate-100 relative overflow-hidden">
-        {/* Subtle decorative mesh */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-50/50 to-transparent pointer-events-none" />
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="max-w-3xl">
-            <span className="text-[#7C3AED] text-[12px] font-bold uppercase tracking-wider mb-4 block">
-              Our Service Ecosystem
-            </span>
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
-              Comprehensive shipping solutions <br className="hidden md:block" />
-              for <span className="text-[#7C3AED]">every business need</span>
-            </h1>
-            <p className="text-slate-600 text-base md:text-lg font-normal leading-relaxed mb-8">
-              Whether you're an emerging D2C brand or a large-scale industrialist, our tech-enabled 
-              network ensures your shipments reach their destination with zero friction.
-            </p>
-            <div className="flex gap-4">
-               <button className="bg-[#7C3AED] text-white px-6 py-3 rounded-md text-[14px] font-bold hover:bg-[#6D28D9] transition-all">
+    <main className="flex flex-col bg-white">     
+      {/* --- HERO --- */}
+      <section className="bg-[#0F172A] py-16 px-6 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-wider mb-3">
+            Our Service Ecosystem
+          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Comprehensive shipping solutions <br className="hidden md:block" /> 
+            <span className="text-[#7C3AED]">for every business need</span>
+          </h1>
+          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto font-normal">
+            Whether you`re an emerging D2C brand or a large-scale industrialist, our tech-enabled 
+            network ensures your shipments reach their destination with zero friction.
+          </p>
+          <div className="mt-8">
+            <button className="bg-[#7C3AED] text-white px-6 py-3 rounded-md text-[14px] font-bold hover:bg-[#6D28D9] transition-all">
                   Get a Quote
-               </button>
-               <button className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-md text-[14px] font-bold hover:bg-slate-50 transition-all">
-                  Contact Sales
-               </button>
-            </div>
+            </button>
+            <button className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-md text-[14px] font-bold hover:bg-slate-50 transition-all">
+                Contact Sales
+            </button>
           </div>
         </div>
       </section>
-
+      
       {/* --- SERVICES GRID: High-Density Cards --- */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-10 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-6">
             {services.map((service, index) => (

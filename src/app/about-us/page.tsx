@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  Building2, 
-  Award, 
   Globe, 
   ShieldCheck, 
   Zap, 
@@ -17,13 +15,13 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col bg-white">
       
-      {/* 1. SHIPROCKET-STYLE HERO: Clean typography & Balanced spacing */}
-      <section className="bg-[#f9fafb] py-16 px-6 border-b border-slate-100">
+      {/* 1. HERO: Clean typography & Balanced spacing */}
+      <section className="bg-[#0F172A] py-16 px-6 border-b border-slate-100">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-wider mb-3">
             About Indore Logistics
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             We’re on a mission to make logistics <br className="hidden md:block" /> 
             <span className="text-[#7C3AED]">simple, accessible and trustworthy</span>
           </h1>
@@ -183,16 +181,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
       </Link>
     </div>
   );
-}
-
-function StatItem({ value, label }: { value: string, label: string }) {
-    return (
-        <div>
-            <p className="text-xl font-bold text-slate-900">{value}</p>
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{label}</p>
-        </div>
-    );
-}
+} 
 
 function ValueCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (

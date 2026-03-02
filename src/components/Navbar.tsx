@@ -77,7 +77,7 @@ export default async function Navbar() {
                   Login
                 </Link>
                 <Link 
-                  href="/book" 
+                  href="/book-pickup" 
                   className="bg-[#0F172A] text-white px-6 py-3 rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-[#6366F1] transition-all shadow-md shadow-slate-200"
                 >
                   Book Pickup
@@ -142,7 +142,7 @@ function NavLink({ href, label }: { href: string; label: string }) {
 }
 
 /* Helper Component for dropdown list items */
-function DropdownItem({ href, icon, title, desc }: any) {
+function DropdownItem({ href, icon, title, desc }: { href: string; icon: React.ReactNode; title: string; desc: string }) {
   return (
     <Link href={href} className="flex items-start gap-4 p-3 hover:bg-indigo-50/50 rounded-xl transition-all group/item">
       <div className="mt-1 p-2 bg-slate-50 group-hover/item:bg-white rounded-lg text-slate-400 group-hover/item:text-[#6366F1] transition-colors border border-transparent group-hover/item:border-indigo-100 shadow-sm">

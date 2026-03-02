@@ -5,21 +5,25 @@ import { Check, Box, Zap, Smartphone, Receipt, Building2, LineChart, BadgeCheck,
 export default function PricingPage() {
   return (
     <main className="min-h-screen bg-[#FDFDFF] font-sans">
-      
+
       {/* --- 1. HERO SECTION (Custom Content) --- */}
-      <section className="bg-white pt-15 pb-16 px-6 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight leading-tight">
-            Scale your logistics with <span className="text-[#6366F1]">Smarter Shipping</span>
+      <section className="bg-[#0F172A] py-16 px-6 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
+          <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-wider mb-3">
+            Our Pricing Strategy
+          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Scale your logistics with <br className="hidden md:block" /> 
+            <span className="text-[#7C3AED]">Smarter Shipping for every business need</span>
           </h1>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
+          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto font-normal">
             Standardized freight rates and tech-enabled tracking for Madhya Pradesh`s growing business ecosystem. 
           </p>
         </div>
       </section>
 
       {/* --- 2. PRICING CARDS --- */}
-      <section className="pb-24 px-6">
+      <section className="pb-15 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           <PricingCard 
@@ -81,7 +85,7 @@ export default function PricingPage() {
       </section>
 
       {/* --- 3. THE "SUPERIOR FEATURES" GRID (Original Content) --- */}
-      <section className="py-24 bg-[#F8FAFF] px-6">
+      <section className="py-15 bg-[#F8FAFF] px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
@@ -129,7 +133,8 @@ export default function PricingPage() {
 }
 
 // Core helpers
-function PricingCard({ title, monthlyFee, avgCost, description, features, promo, highlight }: any) {
+function PricingCard({ title, monthlyFee, avgCost, description, features, promo, highlight }: 
+  { title: string, monthlyFee: string, avgCost: string, description: string, features: string[], promo?: string, highlight?: boolean }) {
   return (
     <div className={`bg-white rounded-xl border p-6 flex flex-col h-full transition-all ${highlight ? 'border-indigo-200 shadow-xl ring-1 ring-indigo-100' : 'border-slate-100'}`}>
       <div className="flex justify-between items-start mb-6">
@@ -171,7 +176,7 @@ function PricingCard({ title, monthlyFee, avgCost, description, features, promo,
   );
 }
 
-function FeatureBox({ icon, title, desc }: any) {
+function FeatureBox({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
     <div className="p-8 rounded-2xl border border-emerald-100 bg-white hover:border-indigo-200 transition-all group">
       <div className="w-12 h-12 mb-6 flex items-center justify-center bg-slate-50 rounded-lg group-hover:scale-110 transition-transform">

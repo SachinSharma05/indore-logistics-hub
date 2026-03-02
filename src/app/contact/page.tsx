@@ -6,23 +6,24 @@ export default function ContactUsPage() {
     <main className="min-h-screen bg-white">
       
       {/* --- 1. CLEAN HERO: Shiprocket Style --- */}
-      <section className="bg-[#f9fafb] py-16 px-6 border-b border-slate-100">
+      <section className="bg-[#0F172A] py-16 px-6 border-b border-slate-100">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-wider mb-3">
             Contact Our Team
           </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Let’s synchronize your <span className="text-[#7C3AED]">supply chain</span>
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Let’s synchronize your <br className="hidden md:block" /> 
+            <span className="text-[#7C3AED]">supply chain</span>
           </h1>
-          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto font-normal">
             From our Vijay Nagar headquarters to your doorstep, our Indore-based 
-            dispatch command is ready to help you scale.
+            dispatch command is ready to help you scale. 
           </p>
         </div>
       </section>
 
       {/* --- 2. CONTACT HUB: The Grid --- */}
-      <section className="py-16 px-6 relative z-20">
+      <section className="py-15 px-6 relative z-20">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10">
           
           {/* Left Column: Utility Information (5 Cols) */}

@@ -37,17 +37,17 @@ export default function CareersPage() {
   return (
     <main className="min-h-screen bg-white">
       
-      {/* --- 1. HERO: Clean Shiprocket Professionalism --- */}
-      <section className="bg-[#f9fafb] py-20 px-6 border-b border-slate-100">
+      {/* --- 1. HERO: Clean Professionalism --- */}
+      <section className="bg-[#0F172A] py-16 px-6 border-b border-slate-100">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-wider mb-3">
             Join the Movement
           </p>
-          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             Build the backbone of <br className="hidden md:block" /> 
             <span className="text-[#7C3AED]">Central Indian Trade</span>
           </h1>
-          <p className="text-slate-600 text-[16px] leading-relaxed max-w-2xl mx-auto font-normal">
+          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto font-normal">
             We aren’t just moving parcels; we’re engineering the infrastructure that 
             powers Indore’s economic growth. Join our mission to revolutionize logistics.
           </p>
