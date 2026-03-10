@@ -52,7 +52,7 @@ export default function CareersPage() {
             powers Indore’s economic growth. Join our mission to revolutionize logistics.
           </p>
           <div className="mt-8">
-            <a href="#openings" className="bg-[#7C3AED] text-white px-8 py-3 rounded-md text-[14px] font-bold hover:bg-[#6D28D9] transition-all shadow-lg shadow-indigo-100">
+            <a href="#openings" className="bg-[#7C3AED] text-white px-8 py-3 rounded-md text-[14px] font-bold hover:bg-[#6D28D9] transition-all shadow-lg">
               View Open Roles
             </a>
           </div>

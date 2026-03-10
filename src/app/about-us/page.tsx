@@ -136,12 +136,56 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-[#EF4444] text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Network Synergy</p>
           <h3 className="text-xl font-bold text-slate-900 mb-8">Integrated Carriers</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-100 transition-all">
             {/* Standard Carrier Logo Placeholders */}
-            <span className="font-bold text-slate-400 text-lg">DELHIVERY</span>
-            <span className="font-bold text-slate-400 text-lg">BLUE DART</span>
-            <span className="font-bold text-slate-400 text-lg">DTDC</span>
-            <span className="font-bold text-slate-400 text-lg">XPRESSBEES</span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/dtdc-v2.png'
+                alt="DTDC Logo"
+                width={100}
+                height={50}
+              />
+            </span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/xpressbees-v2.png'
+                alt="Xpressbees Logo"
+                width={100}
+                height={50}
+              />
+            </span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/bluedart-v2.png'
+                alt="Blue Dart Logo"
+                width={100}
+                height={50}
+              />
+            </span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/delhivery-v2.png'
+                alt="Delhivery Logo"
+                width={100}
+                height={50}
+              />
+            </span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/ekart-v2.png'
+                alt="Ekart Logo"
+                width={100}
+                height={50}
+              />
+            </span>
+            <span className="font-bold text-slate-400 text-lg">
+              <Image
+                src='/logos/aramex-v2.png'
+                alt="Shiprocket Logo"
+                width={100}
+                height={50}
+              />
+            </span>
           </div>
         </div>
       </section>

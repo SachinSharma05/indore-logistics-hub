@@ -55,7 +55,7 @@ export default function TrackShipmentPage() {
                 <Truck className="w-7 h-7 text-white" />
               </div>
               <div>
-                <p className="text-indigo-300 text-[11px] uppercase tracking-widest font-bold mb-1">Live Manifest ILH-8821</p>
+                <p className="text-indigo-300 text-[11px] uppercase tracking-widest font-bold mb-1">Tracking Id: ILH-8821</p>
                 <h2 className="text-2xl font-bold tracking-tight">{shipmentStatus}</h2>
               </div>
             </div>
