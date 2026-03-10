@@ -77,11 +77,11 @@ function ModernHero() {
       
       <div className="max-w-7xl mx-auto relative z-10">       
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight tracking-tight mb-4">
             Ship Anywhere in India <br className="hidden md:block" /> 
             Choose Your <span className="text-[#7C3AED]">Logistics Service</span>
           </h1>
-          <p className="text-[#6366F1] text-[13px] font-bold uppercase tracking-widest mb-6">
+          <p className="text-[#6366F1] text-[12px] font-bold uppercase tracking-widest mb-6">
             Directly book your pickup or send an enquiry. Indore dispatch responds within 30 minutes.
           </p>
 
@@ -141,6 +141,9 @@ function ModernHero() {
 
         {/* --- AWB TRACKING BOX (Integrated) --- */}
         <div className="max-w-3xl mx-auto">
+          <p className="text-center text-[#64748B] text-sm font-bold uppercase tracking-widest mb-2">
+             Track your shipments in real-time across all 25+ partners
+           </p>
            <div className="bg-white rounded-[2rem] p-2 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-2">
               <div className="flex-grow flex items-center px-6 py-2 gap-3">
                  <Truck size={20} className="text-indigo-500" />
@@ -154,9 +157,6 @@ function ModernHero() {
                 Track Shipment
               </button>
            </div>
-           <p className="text-center mt-4 text-[11px] text-slate-400 font-bold uppercase tracking-tighter">
-             Track your shipments in real-time across all 25+ partners
-           </p>
         </div>
       </div>
     </section>
@@ -225,9 +225,8 @@ function WhyChooseUs() {
     <section className="py-20 bg-white px-6">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-6">
-            Logistics built for <br />
-            <span className="text-indigo-600 font-serif italic">efficiency.</span>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-4">
+            Logistics built for <span className="text-indigo-600 font-serif">efficiency.</span>
           </h2>
           <p className="text-slate-500 text-lg mb-8 leading-relaxed">
             We don't just move boxes; we provide the technology that moves your business forward.
@@ -264,15 +263,14 @@ function DeliveryProcess() {
   ];
 
   return (
-    <section className="py-15 bg-[#F8FAFC] px-6">
+    <section className="py-10 bg-[#FDFDFF] px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
-            Our <span className="text-[#7C3AED]">Operational Blueprint</span>
-          </h1>
-          <p className="text-slate-600 text-[15px] leading-relaxed max-w-2xl mx-auto font-normal">
-            Simplified logistics from warehouse to doorstep.
-          </p>
+
+        <div className="max-w-xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-4">
+            Our <span className="text-[#6366F1]">Operational</span> Blueprint
+          </h2>
+          <p className="text-slate-500 mt-2 font-medium">Simplified logistics from warehouse to doorstep.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
@@ -282,17 +280,17 @@ function DeliveryProcess() {
               {idx !== steps.length - 1 && (
                 <div className="hidden lg:block absolute top-10 left-[60%] w-full h-[2px] bg-slate-100 group-hover:bg-indigo-100 transition-colors" />
               )}
-              
+
               <div className="bg-white rounded-2xl p-6 border border-slate-100 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300">
                 <div className="w-12 h-12 rounded-xl bg-indigo-50 text-[#6366F1] flex items-center justify-center mb-6">
                   {step.icon}
                 </div>
-                
+
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-tighter">Step {step.id}</span>
                   <div className="h-px w-4 bg-indigo-100" />
                 </div>
-                
+
                 <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#6366F1] transition-colors">
                   {step.title}
                 </h3>
